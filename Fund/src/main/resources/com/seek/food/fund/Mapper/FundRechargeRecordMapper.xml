@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.seek.food.fund.Mapper.FundRechargeRecordMapper">
+
+    <!-- 全局统一字段映射 -->
+    <resultMap id="FundRechargeRecordResultMap" type="com.seek.food.dto.Fund.FundRechargeRecordDTO">
+    </resultMap>
+
+
+    <insert id="insertRechargeRecord">
+        insert into fund_recharge_record (record_id,account_id,recharge_description,recharge_amount)
+        values(#{recordId},#{accountId},#{rechargeDescription},#{rechargeAmount})
+    </insert>
+
+    <select id="getSimple" resultMap="FundRechargeRecordResultMap">
+        select
+            record_id,
+            account_id,
+            recharge_amount,
+            create_time
+        from fund_recharge_record where account_id=#{accountId} order by record_id limit #{start},#{need}
+    </select>
+
+    <select id="getDetail" resultMap="FundRechargeRecordResultMap">
+        select
+            record_id,
+            account_id,
+            recharge_description,
+            recharge_amount,
+            create_time
+        from fund_recharge_record where record_id=#{recordId} and account_id=#{accountId}
+    </select>
+
+</mapper>

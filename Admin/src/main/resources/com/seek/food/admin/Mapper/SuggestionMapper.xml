@@ -1,0 +1,51 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.seek.food.admin.Mapper.SuggestionMapper">
+
+    <!-- 全局统一字段映射 -->
+    <resultMap id="SuggestionResultMap" type="com.seek.food.dto.Admin.SuggestionDTO">
+        <result property="ack" column="is_ack" />
+    </resultMap>
+
+    <insert id="insert">
+        insert into suggestion (
+                                suggestion_id,
+                                account_id,
+                                suggestion_image_addr,
+                                suggestion_description
+        )
+        values(
+                  #{suggestionId},
+                  #{accountId},
+                  #{suggestionImageAddr},
+                  #{suggestionDescription}
+              );
+    </insert>
+
+    <select id="getList" resultMap="SuggestionResultMap">
+        select
+            suggestion_id,
+            account_id,
+            suggestion_image_addr,
+            suggestion_description,
+            create_time,
+            is_ack
+        from suggestion
+        where is_ack=false
+        order by suggestion_id desc limit #{start},#{need}
+    </select>
+
+    <update id="ack">
+        update suggestion set is_ack=true
+        where suggestion_id=#{suggestionId} and is_ack=false
+    </update>
+
+    <select id="getImageAddrAfterAck" resultType="java.lang.String">
+        select
+            suggestion_image_addr
+        from suggestion
+        where suggestion_id=#{suggestionId} and is_ack=true
+    </select>
+
+</mapper>

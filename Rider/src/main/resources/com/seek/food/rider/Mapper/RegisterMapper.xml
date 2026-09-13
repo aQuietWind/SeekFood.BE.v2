@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.seek.food.rider.Mapper.RegisterMapper">
+
+    <insert id="registerRider">
+        insert into rider
+        (rider_id,
+         rider_name,
+         rider_code,
+         rider_phone_number,
+         rider_password,
+         rider_sex)
+        values
+        (#{riderId},
+         concat('骑手',#{riderId}),
+         #{riderCode},
+         #{riderPhoneNumber},
+         #{riderPassword},
+         #{riderSex});
+    </insert>
+
+</mapper>

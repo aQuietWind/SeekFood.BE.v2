@@ -1,0 +1,152 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.seek.food.employee.Mapper.EmployeeMapper">
+
+    <!-- 全局统一字段映射 -->
+    <resultMap id="EmployeeResultMap" type="com.seek.food.dto.Employee.EmployeeDTO">
+        <result property="resign" column="is_resign" />
+        <result property="delete" column="is_delete" />
+    </resultMap>
+
+    <insert id="insertEmployee">
+        insert into employee (employee_id,merchant_id,employee_name)
+        values(#{employeeId},#{merchantId},#{employeeName});
+    </insert>
+
+    <select id="getSimpleEmployee" resultMap="EmployeeResultMap">
+        select
+            employee_id,
+            merchant_id,
+            employee_name,
+            employee_person_image_addr,
+            employee_position_name,
+            employee_dep_name,
+            is_resign
+        from employee
+        where merchant_id=#{merchantId} and is_delete=false limit #{start},#{need}
+    </select>
+
+    <select id="getSimpleByResign" resultMap="EmployeeResultMap">
+        select
+            employee_id,
+            merchant_id,
+            employee_name,
+            employee_person_image_addr,
+            employee_position_name,
+            employee_dep_name,
+            is_resign
+        from employee
+        where merchant_id=#{merchantId} and is_delete=false and is_resign=#{resign} limit #{start},#{need}
+    </select>
+
+    <select id="getSimpleByName" resultMap="EmployeeResultMap">
+        select
+            employee_id,
+            merchant_id,
+            employee_name,
+            employee_person_image_addr,
+            employee_position_name,
+            employee_dep_name,
+            is_resign
+        from employee
+        where merchant_id=#{merchantId} and is_delete=false and employee_name=#{employeeName} limit #{start},#{need}
+    </select>
+
+    <select id="getSimpleByDep" resultMap="EmployeeResultMap">
+        select
+            employee_id,
+            merchant_id,
+            employee_name,
+            employee_person_image_addr,
+            employee_position_name,
+            employee_dep_name,
+            is_resign
+        from employee
+        where merchant_id=#{merchantId} and is_delete=false and employee_dep_name=#{depName} limit #{start},#{need}
+    </select>
+
+    <select id="getDetailEmployee" resultMap="EmployeeResultMap">
+        select
+            employee_id,
+            merchant_id,
+            employee_name,
+            employee_code,
+            employee_phone_number,
+            employee_addr,
+            employee_person_image_addr,
+            employee_month_salary,
+            employee_year_salary,
+            employee_description,
+            employee_position_name,
+            employee_dep_name,
+            create_time,
+            is_resign
+        from employee
+        where employee_id=#{employeeId} and merchant_id=#{merchantId} and is_delete=false
+    </select>
+
+    <select id="getPersonImageAddr" resultType="java.lang.String">
+        select
+            employee_person_image_addr
+        from employee
+        where employee_id=#{employeeId} and merchant_id=#{merchantId} and is_delete=false
+    </select>
+
+    <select id="getAllPersonImageAddr" resultType="java.lang.String">
+        select
+            employee_person_image_addr
+        from employee
+        where merchant_id=#{merchantId} and is_delete=false
+    </select>
+
+
+    <update id="updateEmployeeMessage">
+        update employee
+        <set>
+            <if test="employeeName!=null">employee_name=#{employeeName},</if>
+            <if test="employeeCode!=null">employee_code=#{employeeCode},</if>
+            <if test="employeePhoneNumber!=null">employee_phone_number=#{employeePhoneNumber},</if>
+            <if test="employeeAddr!=null">employee_addr=#{employeeAddr},</if>
+            <if test="employeeMonthSalary!=null">employee_month_salary=#{employeeMonthSalary},</if>
+            <if test="employeeYearSalary!=null">employee_year_salary=#{employeeYearSalary},</if>
+            <if test="employeeDescription!=null">employee_description=#{employeeDescription},</if>
+            <if test="employeePositionName!=null">employee_position_name=#{employeePositionName},</if>
+            <if test="employeeDepName!=null">employee_dep_name=#{employeeDepName},</if>
+        </set>
+        where employee_id=#{employeeId} and merchant_id=#{merchantId} and is_delete=false
+    </update>
+
+    <update id="updatePersonImage">
+        update employee set employee_person_image_addr=#{addr}
+        where employee_id=#{employeeId} and merchant_id=#{merchantId} and is_delete=false
+        and employee_person_image_addr
+        <if test="oldAddr!=null">=#{oldAddr}</if>
+        <if test="oldAddr==null"> is null</if>
+    </update>
+
+    <update id="updateEmployeeResign">
+        update employee set is_resign=1-is_resign where employee_id=#{employeeId} and merchant_id=#{merchantId} and is_delete=false
+    </update>
+
+    <update id="deleteEmployee">
+        update employee set is_delete=true where employee_id=#{employeeId} and merchant_id=#{merchantId} and is_delete=false
+    </update>
+
+    <update id="deleteAllEmployee">
+        update employee set is_delete=true where merchant_id=#{merchantId} and is_delete=false
+    </update>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</mapper>

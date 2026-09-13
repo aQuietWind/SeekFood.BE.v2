@@ -1,0 +1,10 @@
+[  
+  {  
+    "resource": "all_service_api",
+    "grade": 0,  
+    "count": 500,  
+    "timeWindow": 10,  
+    "minRequestAmount": 10,  
+    "statIntervalMs": 1000  
+  }  
+]

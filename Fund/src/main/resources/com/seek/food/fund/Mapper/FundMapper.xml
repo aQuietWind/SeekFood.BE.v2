@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.seek.food.fund.Mapper.FundMapper">
+
+    <!-- 全局统一字段映射 -->
+    <resultMap id="FundResultMap" type="com.seek.food.dto.Fund.FundDTO">
+        <result property="delete" column="is_delete" />
+    </resultMap>
+
+    <insert id="insertFund">
+        insert into fund (account_id) values(#{accountId});
+    </insert>
+
+    <select id="getFund" resultMap="FundResultMap">
+        select
+            account_id,
+            create_time,
+            fund_amount,
+            is_delete
+        from fund where account_id=#{accountId} and is_delete=false
+    </select>
+
+    <update id="deleteFund">
+        update fund set is_delete=true where account_id=#{accountId} and is_delete=false
+    </update>
+
+    <update id="decreaseFund">
+        update fund set fund_amount=fund_amount-#{cost} where account_id=#{accountId} and fund_amount>#{cost} and is_delete=false
+    </update>
+
+    <update id="increaseFund">
+        update fund set fund_amount=fund_amount+#{rechargeAmount} where account_id=#{accountId} and is_delete=false
+    </update>
+
+</mapper>

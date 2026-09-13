@@ -1,0 +1,26 @@
+common:
+  param:
+    rules:
+      user-id-start: 1
+      merchant-id-start: 2
+      rider-id-start: 3
+      admin-id-start: 4
+      id-capacity: 100000000000
+      id-bitmap-area-number: 1000
+      phone-number-regex: "\\d{11}"
+      password-regex: "(?-U)\\w{8,20}"
+      code-regex: "\\d{18}"
+      person-name-max: 50
+      sex-values:
+        - 1
+        - 2
+      image-type:
+        - ".img"
+        - ".png"
+        - ".jpg"
+      #3mb的数值,1mb是1048576
+      image-size: 3145728
+      need-number-min: 10
+      need-number-max: 20
+      seed-number-max: 100000000000000
+      should-amount-max: 10000

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.seek.food.user.Mapper.LoginMapper">
+
+    <!-- 全局统一字段映射 -->
+    <resultMap id="UserResultMap" type="com.seek.food.dto.User.UserDTO">
+        <result property="delete" column="is_delete" />
+    </resultMap>
+
+    <select id="getUserByPhoneNumber" resultMap="UserResultMap">
+        select
+        user_id,
+        username,
+        sex,
+        header_image_addr,
+        birthday,
+        create_time,
+        is_delete,
+        order_amount
+        from user where phone_number=#{phoneNumber} and is_delete=false
+    </select>
+
+    <select id="getUserByPassword" resultMap="UserResultMap">
+        select
+        user_id,
+        username,
+        sex,
+        header_image_addr,
+        birthday,
+        create_time,
+        is_delete,
+        order_amount
+        from user where phone_number=#{phoneNumber} and password=#{password} and is_delete=false
+    </select>
+
+
+</mapper>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.seek.food.chat.Mapper.ChatRoomMapper">
+
+    <!-- 全局统一字段映射 -->
+    <resultMap id="ChatRoomResultMap" type="com.seek.food.dto.Chat.ChatRoomDTO">
+        <result property="complete" column="is_complete" />
+    </resultMap>
+
+    <insert id="insert">
+        insert into chat_room (
+                               room_id,
+                               order_id,
+                               user_id,
+                               merchant_id,
+                               rider_id,
+                               ending_time
+        ) values(#{roomId},
+                 #{orderId},
+                 #{userId},
+                 #{merchantId},
+                 #{riderId},
+                 #{endingTime});
+    </insert>
+
+    <select id="userGetList" resultMap="ChatRoomResultMap">
+        select
+            room_id,
+            order_id,
+            user_id,
+            merchant_id,
+            rider_id,
+            create_time,
+            ending_time,
+            is_complete
+        from chat_room where user_id=#{accountId} order by room_id desc limit #{start},#{need}
+    </select>
+    <select id="merchantGetList" resultMap="ChatRoomResultMap">
+        select
+            room_id,
+            order_id,
+            user_id,
+            merchant_id,
+            rider_id,
+            create_time,
+            ending_time,
+            is_complete
+        from chat_room where merchant_id=#{accountId} order by room_id desc limit #{start},#{need}
+    </select>
+    <select id="riderGetList" resultMap="ChatRoomResultMap">
+        select
+            room_id,
+            order_id,
+            user_id,
+            merchant_id,
+            rider_id,
+            create_time,
+            ending_time,
+            is_complete
+        from chat_room where rider_id=#{accountId} order by room_id desc limit #{start},#{need}
+    </select>
+
+    <update id="complete">
+        update chat_room set is_complete=true where order_id=#{orderId} and is_complete=false
+    </update>
+
+    <select id="check" resultType="java.lang.Boolean">
+        select
+            count(*)
+        from chat_room
+        where room_id=#{roomId}
+        and (user_id=#{accountId} or merchant_id=#{accountId} or rider_id=#{accountId})
+        #为了配合聊天记录插入的检查,这里检查是否可以插入聊天记录
+        and is_complete=false
+        and now() &lt; ending_time
+    </select>
+</mapper>

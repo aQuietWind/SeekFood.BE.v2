@@ -1,0 +1,90 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.seek.food.comment.Mapper.FirstCommentMapper">
+
+    <!-- 全局统一字段映射 -->
+    <resultMap id="FirstCommentResultMap" type="com.seek.food.dto.Comment.FirstCommentDTO">
+        <result property="delete" column="is_delete" />
+    </resultMap>
+
+    <insert id="insertComment">
+        insert into first_comment (
+                                   first_comment_id,
+                                   user_id,
+                                   order_id,
+                                   meal_id,
+                                   meal_name,
+                                   meal_content,
+                                   merchant_id,
+                                   comment_image_addr,
+                                   comment_description
+                                  )
+        values(
+               #{firstCommentId},
+               #{userId},
+               #{orderId},
+               #{mealId},
+               #{mealName},
+               #{mealContent},
+               #{merchantId},
+               #{commentImageAddr},
+               #{commentDescription}
+              );
+    </insert>
+
+    <select id="getSimple" resultMap="FirstCommentResultMap">
+        select
+            first_comment_id,
+            user_id,
+            merchant_id,
+            comment_image_addr,
+            comment_description,
+            create_time,
+            like_amount,
+            second_comment_amount
+        from first_comment
+        where merchant_id=#{merchantId} and is_delete=false
+        order by first_comment_id desc limit #{start},#{need}
+    </select>
+
+    <select id="getDetail" resultMap="FirstCommentResultMap">
+        select
+            first_comment_id,
+            user_id,
+            order_id,
+            meal_id,
+            meal_name,
+            meal_content,
+            merchant_id,
+            comment_image_addr,
+            comment_description,
+            create_time,
+            like_amount,
+            second_comment_amount,
+            is_delete
+        from first_comment
+        where first_comment_id=#{commentId} and is_delete=false
+    </select>
+
+    <update id="deleteComment">
+        update first_comment set is_delete=true
+        where first_comment_id=#{commentId} and user_id=#{userId} and is_delete=false
+    </update>
+
+    <update id="updateSecondCommentAmount">
+        update first_comment set second_comment_amount=second_comment_amount+#{changeNumber} where first_comment_id=#{commentId}
+    </update>
+
+    <select id="getImageAddrAfterDelete" resultType="java.lang.String">
+        select
+            comment_image_addr
+        from first_comment
+        where first_comment_id=#{commentId} and is_delete=true
+    </select>
+
+    <update id="updateLikeAmount">
+        update first_comment set like_amount=like_amount+#{changeNumber} where first_comment_id=#{commentId}
+    </update>
+
+</mapper>

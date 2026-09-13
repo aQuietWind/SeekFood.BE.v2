@@ -1,0 +1,71 @@
+spring:
+  #mysql的配置
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/seek_food_user
+    username: root
+    password: 439176
+
+user:
+  self:
+    params:
+      rules:
+        user-id-start: 1
+        username-length-max: 15
+        header-image-dest: "D:/home/admin/image/user/header"
+    redis:
+      key:
+        register-opt:
+          name: "user:register:opt:"
+          duration: 60
+        login-opt: 
+          name: "user:login:opt:"
+          duration: 60
+        delete-user-opt: 
+          name: "user:delete:self:opt:"
+          duration: 60
+        update-password-opt: 
+          name: "user:update:password:opt:"
+          duration: 60
+        register-cooldown: 
+          name: "user:register:cooldown"
+          duration: 86400
+        login-password-cooldown: 
+          name: "user:login:password:cooldown:"
+          duration: 2
+        login-refresh-cooldown: 
+          name: "user:refresh:cooldown"
+          duration: 432000
+        update-header-image-cooldown: 
+          name: "user:update:header:image:cooldown:"
+          duration: 2
+        update-message-cooldown: 
+          name: "user:update:message:cooldown:"
+          duration: 1
+        update-password-cooldown:
+          name: "user:update:password:cooldown:"
+          duration: 10
+        caffeine-message: 
+          name: "user:caffeine:message:"
+          duration: 600
+        caffeine-phone: 
+          name: "user:caffeine:phone:"
+          duration: 900
+        user-id-count: 
+          name: "user:id:count"
+          duration: null
+      stream:
+        oldFileStream:
+          name: user:stream:old:file
+          key-name: fileName
+          consumer:
+            group-name: DeleteGroup
+            number: 1
+    jvm-caffeine:
+      user:
+        max-size: 100000
+        expire-time: 300
+      phone-number:
+        max-size: 100000
+        expire-time: 600
+

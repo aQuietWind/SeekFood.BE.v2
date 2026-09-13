@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.seek.food.rider.Mapper.RiderMapper">
+
+    <!-- 全局统一字段映射 -->
+    <resultMap id="RiderResultMap" type="com.seek.food.dto.Rider.RiderDTO">
+        <result property="delete" column="is_delete" />
+    </resultMap>
+
+    <select id="getDetail" resultMap="RiderResultMap">
+        select
+         rider_id,
+         rider_name,
+         rider_sex,
+         create_time,
+         is_delete
+        from rider where rider_id=#{riderId} and is_delete=false
+    </select>
+
+    <select id="getPersonImageAddr" resultType="java.lang.String">
+        select
+            rider_person_image_addr
+        from rider where rider_id=#{riderId} and is_delete=false
+    </select>
+
+    <select id="getPhoneByRiderId" resultType="java.lang.String">
+        select
+            rider_phone_number
+        from rider where rider_id=#{riderId} and is_delete=false
+    </select>
+
+    <update id="updatePersonImage">
+        update rider set
+            rider_person_image_addr=#{addr}
+        where rider_id=#{riderId}
+        and rider_person_image_addr
+        <if test="oldAddr==null">is null</if>
+        <if test="oldAddr!=null">=#{oldAddr}</if>
+        and is_delete=false
+    </update>
+
+    <update id="updatePassword">
+        update rider set
+            rider_password=#{password}
+        where rider_id=#{riderId} and is_delete=false
+    </update>
+
+    <update id="delete">
+        update rider set
+            is_delete=true,rider_phone_number=concat(rider_id,'删除',rider_phone_number)
+        where rider_id=#{riderId} and is_delete=false
+    </update>
+
+    <select id="getPersonImageAddrAfterDelete" resultType="java.lang.String">
+        select
+            rider_person_image_addr
+        from rider where rider_id=#{riderId} and is_delete=true
+    </select>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</mapper>

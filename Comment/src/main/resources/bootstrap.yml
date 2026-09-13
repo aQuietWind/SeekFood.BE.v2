@@ -1,0 +1,48 @@
+spring:
+  #服务名设置
+  application:
+    name: comment
+  profiles:
+    active: dev # 环境：dev/test/prod
+  cloud:
+    nacos:
+      # 服务注册发现（控制截图里的分组）
+      discovery:
+        server-addr: 127.0.0.1:8848
+        namespace: 123123123123
+        group: SEEK_FOOD_GROUP # 这里就是你要改的服务分组
+      config:
+        server-addr: ${spring.cloud.nacos.discovery.server-addr}   #nacos地址
+        password: nacos   #密码
+        username: nacos   #用户名
+        # 配置文件后缀，yaml/properties
+        file-extension: yaml
+        # 命名空间Id，隔离环境，默认public
+        namespace: ${spring.cloud.nacos.discovery.namespace}
+        # 分组，默认DEFAULT_GROUP，区分业务模块
+        group: ${spring.cloud.nacos.discovery.group}
+        # 开启自动刷新配置（动态更新无需重启服务）
+        refresh-enabled: true
+  #声明配置引入，按顺序引入，后面的会覆盖前面的
+  config:
+    import:
+      - nacos:common-jwt-dev.yaml?group=COMMON_GROUP&refreshEnabled=true
+      - nacos:common-default-connection-dev.yaml?group=COMMON_GROUP&refreshEnabled=true
+      - nacos:common-sentinel-rule-dev.yaml?group=COMMON_GROUP&refreshEnabled=true
+      - nacos:common-param-rules-dev.yaml?group=COMMON_GROUP&refreshEnabled=true
+      - nacos:mq-name-bind-dev.yaml?group=MQ_GROUP&refreshEnabled=true
+      - nacos:${spring.application.name}-self-dev.yaml?group=${spring.cloud.nacos.discovery.group}&refreshEnabled=true
+
+#  端口设置
+server:
+  port: 10011
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,89 @@
+spring:
+  #mysql的配置
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/seek_food_fund
+    username: root
+    password: 439176
+
+fund:
+  self:
+    params:
+      rules:
+        recharge-amount-max: 648
+        withdraw-amount-max: 20000
+        description-max: 100
+        deadline-minute-max: 3
+        rollback-minute-max: 5
+    redis:
+      key:
+        fund-insert-cooldown: 
+          name: "fund:insert:cooldown:"
+          duration: 86400
+        fund-recharge-cooldown: 
+          name: "fund:recharge:cooldown:"
+          duration: 12
+        fund-withdraw-cooldown: 
+          name: "fund:withdraw:cooldown:"
+          duration: 12
+        fund-get-simple-recharge-cooldown: 
+          name: "fund:simple:recharge:cooldown:"
+          duration: 1
+        fund-get-simple-withdraw-cooldown: 
+          name: "fund:simple:withdraw:cooldown:"
+          duration: 1
+        fund-get-simple-order-cooldown: 
+          name: "fund:simple:order:cooldown:"
+          duration: 1
+        fund-get-simple-order-refund-cooldown: 
+          name: "fund:simple:order:refund:cooldown:"
+          duration: 1
+        fund-pay-order-record-cooldown: 
+          name: "fund:pay:order:cooldown:"
+          duration: 6
+        fund-rollback-order-record-cooldown: 
+          name: "fund:rollback:order:cooldown:"
+          duration: 6
+        fund-caffeine-message: 
+          name: "fund:caffeine:message:"
+          duration: 600
+        fund-recharge-record-caffeine-message: 
+          name: "fund:caffeine:recharge:"
+          duration: 600
+        fund-withdraw-record-caffeine-message: 
+          name: "fund:caffeine:withdraw:"
+          duration: 600
+        fund-order-record-caffeine-message: 
+          name: "fund:caffeine:order:"
+          duration: 600
+        fund-order-refund-record-caffeine-message: 
+          name: "fund:caffeine:order:refund"
+          duration: 600
+        fund-recharge-record-id-count: 
+          name: "fund:id:count:recharge:"
+          duration: 
+        fund-withdraw-record-id-count: 
+          name: "fund:id:count:withdraw:"
+          duration: 
+        fund-order-record-id-count: 
+          name: "fund:id:count:order:"
+          duration: 
+        fund-order-refund-record-id-count: 
+          name: "fund:id:count:order:refund"
+          duration: 
+    jvm-caffeine:
+      fund:
+        max-size: 100000
+        expire-time: 300
+      fund-recharge-record:
+        max-size: 100000
+        expire-time: 300
+      fund-withdraw-record:
+        max-size: 100000
+        expire-time: 300
+      fund-order-record:
+        max-size: 100000
+        expire-time: 300
+      fund-order-refund-record:
+        max-size: 100000
+        expire-time: 300

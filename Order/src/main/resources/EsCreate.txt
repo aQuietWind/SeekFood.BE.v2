@@ -1,0 +1,54 @@
+
+Put http://localhost:9200/rider_order
+                 {
+                   "settings": {
+                     "number_of_shards": 1,
+                     "number_of_replicas": 1,
+                     "analysis": {
+                       "tokenizer": {
+                         "ngram_tokenizer": {
+                           "type": "ngram",
+                           "min_gram": 1,
+                           "max_gram": 2,
+                           "token_chars": ["letter", "digit"]
+                         }
+                       },
+                       "analyzer": {
+                         "ngram_analyzer": {
+                           "tokenizer": "ngram_tokenizer"
+                         }
+                       }
+                     }
+                   },
+                   "mappings": {
+                     "properties": {
+                       "order_id":{
+                         "type":"long"
+                       },
+                       "merchant_id": {
+                         "type": "long",
+                       },
+                       "delivery_address": {
+                         "type": "keyword",
+                         "index":false
+                       },
+                       "delivery_lat_lon": {
+                         "type":"geo_point",
+                         "index":false
+                       },
+                       "meal_content":{
+                         "type":"keyword",
+                         "index":false
+                       },
+                       "number":{
+                         "type":"integer"
+                       },
+                       "rider_cost":{
+                         "type":"double"
+                       },
+                       "is_accept":{
+                          "type":"boolean"
+                       }
+                     }
+                   }
+                 }

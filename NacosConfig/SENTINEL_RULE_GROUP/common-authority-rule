@@ -1,0 +1,7 @@
+[  
+  {  
+    "resource": "all_service_api",  
+    "limitApp": "gateway,service",  
+    "strategy": 0
+  }  
+]

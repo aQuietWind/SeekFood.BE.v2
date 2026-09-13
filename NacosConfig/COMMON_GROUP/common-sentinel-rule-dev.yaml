@@ -1,0 +1,36 @@
+spring:
+  cloud:
+    sentinel:
+      # 四大规则Nacos数据源
+      datasource:
+        flow:
+          nacos:
+            server-addr: ${spring.cloud.nacos.config.server-addr}
+            namespace: ${spring.cloud.nacos.config.namespace}
+            group-id: SENTINEL_RULE_GROUP
+            data-id: common-flow-rule
+            rule-type: flow
+        degrade:
+          nacos:
+            server-addr: ${spring.cloud.nacos.config.server-addr}
+            namespace: ${spring.cloud.nacos.config.namespace}
+            group-id: SENTINEL_RULE_GROUP
+            data-id: common-degrade-rule
+            rule-type: degrade
+        param:
+          nacos:
+            server-addr: ${spring.cloud.nacos.config.server-addr}
+            namespace: ${spring.cloud.nacos.config.namespace}
+            group-id: SENTINEL_RULE_GROUP
+            data-id: common-param-rule
+            rule-type: param_flow
+        authority:
+          nacos:
+            server-addr: ${spring.cloud.nacos.config.server-addr}
+            namespace: ${spring.cloud.nacos.config.namespace}
+            group-id: SENTINEL_RULE_GROUP
+            data-id: common-authority-rule
+            rule-type: authority
+common:
+  self:
+    all-service-api-name: all_service_api

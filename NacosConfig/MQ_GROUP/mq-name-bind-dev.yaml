@@ -1,0 +1,237 @@
+mq:
+  name:
+    bind:
+      #异常交换机
+      error-exchange:
+        exchange-name: errorExchange
+        type: fanout
+        error-queue:
+          name: errorQueue
+          routing-key: null
+      #用户交换机
+      user-exchange:
+        exchange-name: userExchange
+        type: direct
+        register-fund-queue:
+          name: registerFundQueue
+          routing-key: register
+        delete-file-user-queue:
+          name: deleteFileUserQueue
+          routing-key: deleteFile
+        delete-fund-queue:
+          name: deleteFundQueue
+          routing-key: delete
+      #商家交换机
+      merchant-exchange:
+        exchange-name: merchantExchange
+        type: direct
+        register-fund-queue:
+          name: registerFundQueue
+          routing-key: register
+        delete-file-merchant-queue:
+          name: deleteFileMerchantQueue
+          routing-key: deleteFile
+        delete-fund-queue:
+          name: deleteFundQueue
+          routing-key: delete
+        delete-merchant-queue:
+          name: deleteMerchantQueue
+          routing-key: delete
+        delete-all-employee-queue:
+          name: deleteAllEmployeeQueue
+          routing-key: delete
+        delete-all-meal-queue:
+          name: deleteAllMealQueue
+          routing-key: delete
+        es-sync-merchant-queue:
+          name: esSyncMerchantQueue
+          routing-key: esSync
+      #职员交换机
+      employee-exchange:
+        exchange-name: employeeExchange
+        type: direct
+        change-employee-amount-queue:
+          name: changeEmployeeAmountQueue
+          routing-key: changeAmount
+        delete-file-employee-queue:
+          name: deleteFileEmployeeQueue
+          routing-key: deleteFile
+      #餐品交换机
+      meal-exchange:
+        exchange-name: mealExchange
+        type: direct
+        delete-file-meal-queue:
+          name: deleteFileMealQueue
+          routing-key: deleteFile
+        delete-file-meal-dead-letter-queue:
+          name: deleteFileMealDeadLetterQueue
+          routing-key: deleteFileDeadLetter
+        delete-all-file-meal-dead-letter-queue:
+          name: deleteAllFileMealDeadLetterQueue
+          routing-key: deleteAllFileDeadLetter
+      #资金交换机
+      fund-exchange:
+        exchange-name: fundExchange
+        type: direct
+        #折扣券使用队列，在用户支付后先使用折扣卷再确认订单
+        use-voucher-queue:
+          name: useVoucherQueue
+          routing-key: ackOrder
+        #延时回滚优惠券和支付金额的死信队列
+        rollback-all-fund-dead-letter-queue:
+          name: rollbackAllFundDeadLetterQueue
+          routing-key: rollbackAllDeadLetter
+      #折扣券交换机
+      voucher-exchange:
+        exchange-name: voucherExchange
+        type: direct
+        #使订单模块确认订单
+        order-ack-queue:
+          name: orderAckQueue
+          routing-key: orderAck
+      #活动交换机
+      promotion-exchange:
+        exchange-name: promotionExchange
+        type: direct
+        #生成优惠券持有关系
+        register-voucher-connection-queue:
+          name: registerVoucherConnectionQueue
+          routing-key: registerVoucherConnection
+      #订单交换机
+      order-exchange:
+        exchange-name: orderExchange
+        type: direct
+        #订单的资金收据初始化
+        register-fund-order-record-queue:
+          name: registerFundOrderRecordQueue
+          routing-key: registerFundOrder
+        #回滚优惠券队列
+        rollback-voucher-queue:
+          name: rollbackVoucherQueue
+          routing-key: rollback
+        #回滚支付金额队列
+        rollback-fund-queue:
+          name: rollbackFundQueue
+          routing-key: rollback
+        #金额打款队列，用于商家与骑手打款
+        transfer-fund-queue:
+          name: transferFundQueue
+          routing-key: transfer
+        #延时回滚优惠券和支付金额的死信队列
+        rollback-all-fund-dead-letter-queue:
+          name: rollbackAllFundDeadLetterQueue
+          routing-key: rollbackAllDeadLetter
+        #更改商家订单数量
+        change-merchant-order-amount-queue:
+          name: changeMerchantOrderAmountQueue
+          routing-key: merchantOrderAmount
+        #更改餐品的售出数量
+        change-meal-sales-volume-queue:
+          name: changeMealSalesVolumeQueue
+          routing-key: mealSalesVolume
+        #更改用户订单数量
+        change-user-order-amount-queue:
+          name: changeUserOrderAmountQueue
+          routing-key: userOrderAmount
+        #聊天室初始化
+        chat-room-init-queue:
+          name: chatRoomInitQueue
+          routing-key: chatRoomInit
+        #聊天室切换为完成状态
+        chat-room-complete-queue:
+          name: chatRoomCompleteQueue
+          routing-key: chatRoomComplete
+      #骑手交换机
+      rider-exchange:
+        exchange-name: riderExchange
+        type: direct
+        register-fund-queue:
+          name: registerFundQueue
+          routing-key: register
+        delete-fund-queue:
+          name: deleteFundQueue
+          routing-key: delete
+        delete-file-rider-queue:
+          name: deleteFileRiderQueue
+          routing-key: deleteFile
+      #评论交换机
+      comment-exchange:
+        exchange-name: commentExchange
+        type: direct
+        delete-file-comment-queue:
+          name: deleteFileCommentQueue
+          routing-key: deleteFile
+        #更改商家的一级评论数量
+        change-merchant-first-comment-amount-queue:
+          name: changeMerchantFirstCommentAmountQueue
+          routing-key: merchantFirstCommentAmount
+        #更改一级评论的二级评论数量
+        change-second-comment-amount-queue:
+          name: changeSecondCommentAmountQueue
+          routing-key: secondCommentAmount
+      #交互交换机
+      interaction-exchange:
+        exchange-name: interactionExchange
+        type: direct
+        #更改一级评论的点赞数量
+        change-first-comment-like-amount-queue:
+          name: changeFirstCommentLikeAmountQueue
+          routing-key: firstCommentLike
+        #更改二级评论的点赞数量
+        change-second-comment-like-amount-queue:
+          name: changeSecondCommentLikeAmountQueue
+          routing-key: secondCommentLike
+        #更改商家的点赞数量
+        change-merchant-like-amount-queue:
+          name: changeMerchantLikeAmountQueue
+          routing-key: merchantLike
+        #更改商家的收藏数量
+        change-merchant-collect-amount-queue:
+          name: changeMerchantCollectAmountQueue
+          routing-key: merchantCollect
+        #同步点赞状态
+        sync-like-state-queue:
+          name: syncLikeStateQueue
+          routing-key: SyncLike
+        #同步收藏状态
+        sync-collect-state-queue:
+          name: syncCollectStateQueue
+          routing-key: SyncCollect
+      #管理员交换机
+      admin-exchange:
+        exchange-name: adminExchange
+        type: direct
+        delete-file-admin-queue:
+          name: deleteFileAdminQueue
+          routing-key: deleteFile
+      #聊天交换机
+      chat-exchange:
+        exchange-name: chatExchange
+        type: direct
+        delete-file-chat-impl-queue:
+          name: deleteFileChatImplQueue
+          routing-key: deleteFile
+        delete-file-chat-dead-letter-queue:
+          name: deleteFileChatDeadLetterQueue
+          routing-key: deleteFileDeadLetter
+        chat-inform-queue:
+          name: chatInformQueue-${chat.self.this-server-id}
+          routing-key: chatInform
+      #死信交换机
+      dead-letter-exchange:
+        exchange-name: deadLetterExchange
+        type: direct
+        delete-file-meal-impl-queue:
+          name: deleteFileMealImplQueue
+          routing-key: deleteMealFile
+        delete-all-file-meal-impl-queue:
+          name: deleteAllFileMealImplQueue
+          routing-key: deleteAllMealFile
+        #回滚所有的资金监听实现队列,消费者在Order处
+        rollback-all-fund-impl-queue:
+          name: rollbackAllFundImplQueue
+          routing-key: rollbackAllFund
+        delete-file-chat-impl-queue:
+          name: deleteFileChatImplQueue
+          routing-key: deleteFile
+

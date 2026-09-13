@@ -1,0 +1,58 @@
+spring:
+  #mysql的配置
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/seek_food_voucher
+    username: root
+    password: 439176
+
+
+voucher:
+  self:
+    params: 
+      rules:
+        voucher-name-max: 15
+        voucher-description-max: 300
+        duration-day-min: 1
+    redis:
+      key:
+        merchant-voucher-insert-cooldown:
+          name: "merchant:voucher:insert:cooldown:"
+          duration: 6
+        merchant-voucher-get-simple-cooldown:
+          name: "merchant:voucher:simple:cooldown:"
+          duration: 1
+        merchant-voucher-get-simple-effective-cooldown:
+          name: "merchant:voucher:simple:effective:cooldown:"
+          duration: 1
+        voucher-connection-get-simple-cooldown:
+          name: "voucher:connection:simple:cooldown:"
+          duration: 1
+        voucher-connection-get-simple-effective-cooldown:
+          name: "voucher:connection:simple:effective:cooldown:"
+          duration: 1
+        merchant-voucher-id-count:
+          name: "merchant:voucher:id:count"
+          duration: null
+        voucher-connection-id-count:
+          name: "voucher:connection:id:count"
+          duration: null
+        merchant-voucher-message-caffeine:
+          name: "merchant:voucher:message:caffeine:"
+          duration: 600
+        voucher-connection-message-caffeine:
+          name: "voucher:connection:message:caffeine:"
+          duration: 600
+    jvm-caffeine:
+      merchant-voucher:
+        max-size: 100000
+        expire-time: 300
+      voucher-connection:
+        max-size: 100000
+        expire-time: 300
+
+
+
+
+
+

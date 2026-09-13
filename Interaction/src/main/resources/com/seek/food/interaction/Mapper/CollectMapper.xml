@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.seek.food.interaction.Mapper.CollectMapper">
+    <insert id="syncCollect">
+        insert into collect_connection (aim_id,account_id,type,is_collect)
+        values( #{aimId} ,#{ownId},#{type},#{value}) on duplicate key update is_collect=#{value},update_time=now()
+    </insert>
+
+    <select id="getCollectList">
+        select
+            aim_id
+        from collect_connection
+        where account_id=#{accountId} and is_collect=true and type=#{type} order by update_time desc limit #{start},#{need}
+    </select>
+</mapper>

@@ -1,0 +1,69 @@
+spring:
+  #mysql的配置
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/seek_food_rider
+    username: root
+    password: 439176
+
+
+
+
+rider:
+  self:
+    params: 
+      rules:
+        rider-person-image-dest: "D:/home/admin/image/rider/person"
+    redis:
+      key:
+        register-opt:
+          name: "rider:register:opt:"
+          duration: 60
+        login-opt: 
+          name: "rider:login:opt:"
+          duration: 60
+        delete-rider-opt: 
+          name: "rider:delete:self:opt:"
+          duration: 60
+        update-password-opt: 
+          name: "rider:update:password:opt:"
+          duration: 60
+        register-cooldown: 
+          name: "rider:register:cooldown:"
+          duration: 86400
+        login-password-cooldown: 
+          name: "rider:login:password:cooldown:"
+          duration: 2
+        login-refresh-cooldown: 
+          name: "rider:refresh:cooldown:"
+          duration: 432000
+        update-person-image-cooldown: 
+          name: "rider:update:person:image:cooldown:"
+          duration: 6
+        update-password-cooldown:
+          name: "rider:update:password:cooldown:"
+          duration: 10
+        rider-id-count:
+          name: "rider:id:count"
+          duration: null
+        rider-message-caffeine:
+          name: "rider:message:caffeine:"
+          duration: 600
+        rider-phone-caffeine:
+          name: "rider:phone:caffeine:"
+          duration: 600
+      stream:
+        oldFileStream:
+          name: rider:stream:old:file
+          key-name: fileName
+          consumer:
+            group-name: DeleteGroup
+            number: 1
+    jvm-caffeine:
+      rider:
+        max-size: 100000
+        expire-time: 300
+      rider-phone:
+        max-size: 100000
+        expire-time: 300
+

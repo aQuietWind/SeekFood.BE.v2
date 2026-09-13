@@ -1,0 +1,229 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.seek.food.order.Mapper.OrderMapper">
+
+    <!-- 全局统一字段映射 -->
+    <resultMap id="OrderResultMap" type="com.seek.food.dto.Order.OrderDTO">
+        <result property="refund" column="is_refund" />
+        <result property="lock" column="is_lock" />
+        <result property="ack" column="is_ack" />
+        <result property="complete" column="is_complete" />
+    </resultMap>
+
+    <insert id="insertOrder">
+        insert into `order`
+            (order_id,
+             user_id,
+             merchant_id,
+             rider_id,
+             voucher_connection_id,
+             meal_id,
+             meal_name,
+             meal_price,
+             meal_description,
+             meal_show_image_addr,
+             meal_content,
+             meal_type,
+             number,
+             delivery_address,
+             delivery_lon,
+             delivery_lat,
+             origin_cost,
+             discount_cost,
+             rider_cost,
+             total_cost)
+        values(#{orderId},
+               #{userId},
+               #{merchantId},
+               #{riderId},
+               #{voucherConnectionId},
+               #{mealId},
+               #{mealName},
+               #{mealPrice},
+               #{mealDescription},
+               #{mealShowImageAddr},
+               #{mealContent},
+               #{mealType},
+               #{number},
+               #{deliveryAddress},
+               #{deliveryLon},
+               #{deliveryLat},
+               #{originCost},
+               #{discountCost},
+               #{riderCost},
+               #{totalCost});
+    </insert>
+
+    <select id="getSimple" resultMap="OrderResultMap">
+        select
+            order_id,
+            user_id,
+            merchant_id,
+            rider_id,
+            voucher_connection_id,
+            meal_id,
+            meal_name,
+            meal_price,
+            meal_show_image_addr,
+            number,
+            delivery_address,
+            total_cost,
+            state_now,
+            is_refund,
+            is_lock,
+            is_ack,
+            is_complete
+        from `order`
+        where (user_id=#{tokenId} or merchant_id=#{tokenId} or rider_id=#{tokenId}) and state_now &gt; 0
+        order by order_id desc
+        limit #{start},#{need}
+    </select>
+
+    <select id="getSimpleState" resultMap="OrderResultMap">
+        select
+            order_id,
+            user_id,
+            merchant_id,
+            rider_id,
+            voucher_connection_id,
+            meal_id,
+            meal_name,
+            meal_price,
+            meal_show_image_addr,
+            number,
+            delivery_address,
+            total_cost,
+            state_now,
+            is_refund,
+            is_lock,
+            is_ack,
+            is_complete
+        from `order`
+        where (user_id=#{tokenId} or merchant_id=#{tokenId} or rider_id=#{tokenId}) and state_now=#{state}
+        order by order_id desc
+        limit #{start},#{need}
+    </select>
+
+    <select id="getDetail" resultMap="OrderResultMap">
+        select
+            order_id,
+            user_id,
+            merchant_id,
+            rider_id,
+            voucher_connection_id,
+            meal_id,
+            meal_name,
+            meal_price,
+            meal_description,
+            meal_show_image_addr,
+            meal_content,
+            meal_type,
+            number,
+            delivery_address,
+            delivery_lon,
+            delivery_lat,
+            origin_cost,
+            discount_cost,
+            rider_cost,
+            total_cost,
+            create_time,
+            complete_time,
+            state_now,
+            is_refund,
+            is_lock,
+            is_ack,
+            is_complete
+        from `order`
+        where order_id=#{orderId}
+    </select>
+
+    <update id="lock">
+        update `order` set is_lock=true
+        where order_id=#{orderId}
+        and is_ack=false and is_lock=false and state_now=0
+    </update>
+
+    <update id="refund">
+        update `order` set is_refund=true,is_lock=true
+        where order_id=#{orderId} and user_id=#{userId}
+        and is_ack=true and is_lock=false and is_refund=false and is_complete=false and state_now = 1
+    </update>
+
+    <update id="ack">
+        update `order` set is_ack=true,state_now=1
+        where order_id=#{orderId}
+        and is_ack=false and is_lock=false and is_refund=false and is_complete=false and state_now=0
+    </update>
+
+    <update id="merchantReject">
+        update `order` set is_refund=true, is_lock=true
+        where order_id=#{orderId} and merchant_id=#{merchantId}
+          and is_ack=true and is_lock=false and is_refund=false and is_complete=false and state_now = 1
+    </update>
+
+    <update id="merchantAck">
+        update `order` set state_now= 2
+        where order_id=#{orderId} and merchant_id=#{merchantId}
+          and is_ack=true and is_lock=false and is_refund=false and is_complete=false and state_now = 1
+    </update>
+
+    <update id="merchantMake">
+        update `order` set state_now= 3
+        where order_id=#{orderId} and merchant_id=#{merchantId}
+          and is_ack=true and is_lock=false and is_refund=false and is_complete=false and state_now = 2
+    </update>
+
+    <update id="riderAccept">
+        update `order` set rider_id= #{riderId}
+        where order_id=#{orderId} and rider_id is null
+          and is_ack=true and is_lock=false and is_refund=false and is_complete=false and (state_now = 2 or state_now =3)
+    </update>
+
+    <update id="riderAck">
+        update `order` set state_now= 4
+        where order_id=#{orderId} and rider_id=#{riderId}
+          and is_ack=true and is_lock=false and is_refund=false and is_complete=false and state_now = 3
+    </update>
+
+    <update id="riderDelivery">
+        update `order` set state_now= 5
+        where order_id=#{orderId} and rider_id=#{riderId}
+          and is_ack=true and is_lock=false and is_refund=false and is_complete=false and state_now = 4
+    </update>
+
+    <update id="userReceive">
+        update `order` set state_now= 6,is_complete=true,is_lock=true
+        where order_id=#{orderId} and user_id=#{userId}
+          and is_ack=true and is_lock=false and is_refund=false and is_complete=false and state_now = 5
+    </update>
+
+
+    <select id="commentSelect" resultType="com.seek.food.dto.Comment.FirstCommentDTO">
+        select
+            order_id,
+            user_id,
+            merchant_id,
+            meal_id,
+            meal_name,
+            meal_content
+        from `order`
+        where order_id=#{orderId} and user_id=#{userId}
+          and is_ack=true and is_lock=true and is_refund=false and is_complete=true and state_now = 6
+    </select>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</mapper>

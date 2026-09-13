@@ -1,0 +1,58 @@
+spring:
+  #mysql的配置
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/seek_food_employee
+    username: root
+    password: 439176
+
+
+
+employee:
+  self:
+    params: 
+      rules:
+        employee-position-max: 15
+        employee-dep-name-max: 15
+        employee-addr-max: 60
+        employee-description-max: 300
+        person-image-dest: "D:/home/admin/image/employee/person"
+    redis:
+      key:
+        employee-insert-cooldown:
+          name: "employee:insert:cooldown:"
+          duration: 5
+        employee-get-simple-cooldown:
+          name: "employee:get:simple:cooldown:"
+          duration: 1
+        employee-update-message-cooldown:
+          name: "employee:update:message:cooldown:"
+          duration: 3
+        employee-update-person-image-cooldown:
+          name: "employee:update:person:image:cooldown:"
+          duration: 3
+        employee-delete-cooldown:
+          name: "employee:delete:cooldown:"
+          duration: 6
+        employee-update-resign-cooldown:
+          name: "employee:update:resign:cooldown:"
+          duration: 3
+        employee-id-count:
+          name: "employee:id:count"
+          duration: null
+        employee-message-caffeine:
+          name: "employee:message:caffeine:"
+          duration: 600
+      stream:
+        oldFileStream:
+          name: employee:stream:old:file
+          key-name: fileName
+          consumer:
+            group-name: DeleteGroup
+            number: 1
+    jvm-caffeine:
+      employee:
+        max-size: 100000
+        expire-time: 300
+    scheduled-druation:
+      es-sync: 3000

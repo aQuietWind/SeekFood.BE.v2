@@ -1,0 +1,79 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.seek.food.promotion.Mapper.MerchantGrabPromotionMapper">
+
+    <!-- 全局统一字段映射 -->
+    <resultMap id="MerchantGrabPromotionResultMap" type="com.seek.food.dto.Promotion.MerchantGrabPromotionDTO">
+    </resultMap>
+
+    <!--    新增餐品-->
+    <insert id="insertPromotion">
+        insert into merchant_grab_promotion
+        (promotion_id,merchant_id,voucher_id,promotion_title,promotion_description,promotion_notice,voucher_origin_amount,voucher_now_amount
+        ,start_time,end_time)
+        values
+        (#{promotionId},#{merchantId},#{voucherId},#{promotionTitle},#{promotionDescription},#{promotionNotice},#{voucherOriginAmount}
+        ,#{voucherOriginAmount},#{startTime},#{endTime});
+    </insert>
+
+    <select id="getSimple" resultMap="MerchantGrabPromotionResultMap">
+        select
+            promotion_id,
+            merchant_id,
+            promotion_title,
+            voucher_now_amount,
+            start_time,
+            end_time
+        from merchant_grab_promotion
+        where merchant_id=#{merchantId} order by promotion_id desc limit #{start},#{need}
+    </select>
+
+    <select id="getSimpleEffective" resultMap="MerchantGrabPromotionResultMap">
+        select
+            promotion_id,
+            merchant_id,
+            promotion_title,
+            voucher_now_amount,
+            start_time,
+            end_time
+        from merchant_grab_promotion
+        where merchant_id=#{merchantId} and start_time &lt;= now() and end_time &gt;= now() order by promotion_id desc limit #{start},#{need}
+    </select>
+
+    <select id="getDetail" resultMap="MerchantGrabPromotionResultMap">
+        select
+            promotion_id,
+            merchant_id,
+            voucher_id,
+            promotion_title,
+            promotion_description,
+            promotion_notice,
+            voucher_origin_amount,
+            voucher_now_amount,
+            start_time,
+            end_time,
+            create_time
+        from merchant_grab_promotion
+        where promotion_id=#{promotionId}
+    </select>
+
+    <update id="deleteAllMeal">
+        update meal set is_delete=true
+        where merchant_id=#{merchantId} and is_delete=false
+    </update>
+
+    <update id="getVoucher">
+        update merchant_grab_promotion set voucher_now_amount=voucher_now_amount-1
+        where promotion_id=#{promotionId} and start_time &lt;= now() and end_time &gt;= now() and voucher_now_amount>0
+    </update>
+
+
+
+
+
+
+
+
+
+</mapper>

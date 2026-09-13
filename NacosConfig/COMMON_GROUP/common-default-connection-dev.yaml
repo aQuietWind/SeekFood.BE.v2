@@ -1,0 +1,104 @@
+spring:
+  servlet:
+    multipart:
+      max-file-size: 4MB               #这个代表最大的单个文件大小
+      max-request-size: 16MB           #这个代表最大的单次请求传输的数据大小（应对一次传输数个文件）
+  #es的连接地址
+  elasticsearch:
+    uris: http://127.0.0.1:9200
+    username:
+    password:
+    connection-timeout: 10s
+  #rabbitmq的地址
+  rabbitmq:
+    host: localhost   #ip地址
+    port: 5672        #端口
+    #虚拟主机
+    virtual-host: SeekFood
+    username: guest   #用户名
+    password: guest   #密码
+    #监听者有关配置
+    listener:
+      simple:
+        #设置每次消息预取的max上限，在未处理的消息达到上线时，不再获取消息
+        prefetch: 10   
+        #设置消息确认模式
+        acknowledge-mode: auto      
+        retry:      #重试配置
+          #开启重试
+          enabled: true
+          #初始的重试等待时间
+          initial-interval: 1000
+          #每次重试之间翻的倍数
+          multiplier: 1  
+          #最大重试次数     
+          max-attempts: 3
+          #是否处于无状态模式，有事务则设置为false
+          stateless: true
+    #异步等待消息，到时机再执行回调函数。也可以是simple同步等待
+    publisher-confirm-type: correlated
+    #开启回调功能
+    publisher-returns: true
+    template:
+      #开启发生异常时对消息进行回调函数处理，为false代表直接抛弃消息
+      mandatory: true
+  cloud:
+    #sentinel的配置
+    sentinel:
+      transport:
+        #sentinel的地址
+        dashboard: 127.0.0.1:8090
+      #开启web上下文聚合，进行全服务统一限制规则
+      web-context-unify: false
+  data:
+  #redis的地址
+    redis:
+      host: 127.0.0.1
+      port: 6379
+      password:
+
+#  Mybatsi的配置
+mybatis:
+  configuration:
+    #开启下划线转驼峰
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+#  Feign的配置
+feign:
+  sentinel:
+    #开启Feign整合Sentinel
+    enabled: true
+  client:
+    config:
+      default:
+        connectTimeout: 1000
+        readTimeout: 3000
+        #开启基础重试（注意：默认只重试1次，且只针对GET请求）
+        retryer: feign.Retryer.Default
+
+# #  seata设置
+# seata:
+#   #设置模式为AT模式
+#   data-source-proxy-mode: AT
+#   register:
+#     #类型
+#     type: nacos
+#     nacos:
+#       #nacos服务地点
+#       server-addr: 127.0.0.1:8848
+#       #命名空间，可为空
+#       namespace: ""
+#       #服务组名称
+#       group: SEATA_GROUP
+#       #服务名称
+#       application: seata-server
+#       #事务组
+#   tx-server-group: default_tx_group
+#   service:
+#     vgroup-mapping:     #与事务组的映射关系
+#       #seata集群名
+#       default_tx_group: default   
+#     default:
+#       #seata地址
+#       grouplist: 127.0.0.1:8091     

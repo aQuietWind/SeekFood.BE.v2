@@ -1,0 +1,92 @@
+gateway-self-route:
+  user-id: user
+  merchant-id: merchant
+  employee-id: employee
+  meal-id: meal
+  fund-id: fund
+  voucher-id: voucher
+  promotion-id: promotion
+  rider-id: rider
+  order-id: order
+  chat-id: chat
+  comment-id: comment
+  interaction-id: interaction
+  admin-id: admin
+spring:
+  cloud:
+    gateway:
+      httpclient:
+        forward-headers-strategy: native
+      server:
+        webflux:
+          default-filters:
+            # 给所有响应添加统一请求头标识,用于sentinel鉴定
+            - AddRequestHeader=x-origin,gateway
+            #去除掉第一段路径
+            - StripPrefix=1   
+          routes:
+            - id: ${gateway-self-route.user-id}   #路由标识,必须唯一
+              # 显式指定目标服务分组，路由地址，lb代表负载均衡，user代表模块服务名。该项可以直接用ip地址代替
+              uri: lb://${gateway-self-route.user-id}
+              predicates:       #断言，判断是否转发给该路由
+                - Path=/${gateway-self-route.user-id}/**    #路径断言，代表将路径为user的都转发
+
+            - id: ${gateway-self-route.merchant-id}
+              uri: lb://${gateway-self-route.merchant-id}
+              predicates:
+                - Path=/${gateway-self-route.merchant-id}/**
+
+            - id: ${gateway-self-route.employee-id}
+              uri: lb://${gateway-self-route.employee-id}
+              predicates:
+                - Path=/${gateway-self-route.employee-id}/**
+
+            - id: ${gateway-self-route.meal-id}
+              uri: lb://${gateway-self-route.meal-id}
+              predicates:
+                - Path=/${gateway-self-route.meal-id}/**
+
+            - id: ${gateway-self-route.fund-id}
+              uri: lb://${gateway-self-route.fund-id}
+              predicates:
+                - Path=/${gateway-self-route.fund-id}/**
+
+            - id: ${gateway-self-route.voucher-id}
+              uri: lb://${gateway-self-route.voucher-id}
+              predicates:
+                - Path=/${gateway-self-route.voucher-id}/**
+
+            - id: ${gateway-self-route.promotion-id}
+              uri: lb://${gateway-self-route.promotion-id}
+              predicates:
+                - Path=/${gateway-self-route.promotion-id}/**
+
+            - id: ${gateway-self-route.rider-id}
+              uri: lb://${gateway-self-route.rider-id}
+              predicates:
+                - Path=/${gateway-self-route.rider-id}/**
+
+            - id: ${gateway-self-route.order-id}
+              uri: lb://${gateway-self-route.order-id}
+              predicates:
+                - Path=/${gateway-self-route.order-id}/**
+
+            - id: ${gateway-self-route.chat-id}
+              uri: lb://${gateway-self-route.chat-id}
+              predicates:
+                - Path=/${gateway-self-route.chat-id}/**
+
+            - id: ${gateway-self-route.comment-id}
+              uri: lb://${gateway-self-route.comment-id}
+              predicates:
+                - Path=/${gateway-self-route.comment-id}/**
+
+            - id: ${gateway-self-route.interaction-id}
+              uri: lb://${gateway-self-route.interaction-id}
+              predicates:
+                - Path=/${gateway-self-route.interaction-id}/**
+
+            - id: ${gateway-self-route.admin-id}
+              uri: lb://${gateway-self-route.admin-id}
+              predicates:
+                - Path=/${gateway-self-route.admin-id}/**

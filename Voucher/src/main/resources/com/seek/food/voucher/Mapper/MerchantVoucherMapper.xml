@@ -1,0 +1,64 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.seek.food.voucher.Mapper.MerchantVoucherMapper">
+
+    <!-- 全局统一字段映射 -->
+    <resultMap id="MerchantVoucherResultMap" type="com.seek.food.dto.Voucher.MerchantVoucherDTO">
+    </resultMap>
+
+    <insert id="insertMerchantVoucher">
+        insert into merchant_voucher (voucher_id,merchant_id,voucher_name,voucher_description,discount_cost,min_cost,start_time,end_time)
+        values(#{voucherId},#{merchantId},#{voucherName},#{voucherDescription},#{discountCost},#{minCost},#{startTime},#{endTime});
+    </insert>
+
+    <select id="getSimple" resultMap="MerchantVoucherResultMap">
+        select
+            voucher_id,
+            merchant_id,
+            voucher_name,
+            discount_cost,
+            start_time,
+            end_time,
+            create_time
+        from merchant_voucher
+        where merchant_id=#{merchantId} order by voucher_id desc limit #{start},#{need}
+    </select>
+
+    <select id="getSimpleEffective" resultMap="MerchantVoucherResultMap">
+        select
+            voucher_id,
+            merchant_id,
+            voucher_name,
+            discount_cost,
+            start_time,
+            end_time,
+            create_time
+        from merchant_voucher
+        where merchant_id=#{merchantId} and start_time &lt;= now() and end_time &gt;= now() order by voucher_id desc limit #{start},#{need}
+    </select>
+
+    <select id="getDetail" resultMap="MerchantVoucherResultMap">
+        select
+            voucher_id,
+            merchant_id,
+            voucher_name,
+            voucher_description,
+            discount_cost,
+            min_cost,
+            start_time,
+            end_time,
+            create_time
+        from merchant_voucher
+        where voucher_id=#{voucherId}
+    </select>
+
+    <select id="exist">
+        select count(*) from merchant_voucher where voucher_id=#{voucherId} and merchant_id=#{merchantId}
+    </select>
+
+
+
+
+
+</mapper>

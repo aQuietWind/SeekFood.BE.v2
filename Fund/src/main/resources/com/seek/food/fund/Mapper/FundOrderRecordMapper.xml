@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.seek.food.fund.Mapper.FundOrderRecordMapper">
+
+    <!-- 全局统一字段映射 -->
+    <resultMap id="FundOrderRecordResultMap" type="com.seek.food.dto.Fund.FundOrderRecordDTO">
+        <result property="pay" column="is_pay" />
+        <result property="refund" column="is_refund" />
+    </resultMap>
+
+
+    <select id="getSimple" resultMap="FundOrderRecordResultMap">
+        select
+            record_id,
+            account_id,
+            order_id,
+            cost,
+            create_time,
+            is_pay,
+            is_refund
+        from fund_order_record where account_id=#{accountId} order by record_id desc limit #{start},#{need}
+    </select>
+
+    <select id="getDetail" resultMap="FundOrderRecordResultMap">
+        select
+            record_id,
+            account_id,
+            order_id,
+            order_description,
+            cost,
+            deadline,
+            able_rollback_time,
+            create_time,
+            is_pay,
+            is_refund
+        from fund_order_record where record_id=#{recordId} and account_id=#{accountId}
+    </select>
+
+    <insert id="insertRecord">
+        insert into fund_order_record (record_id,account_id,order_id,order_description,cost,deadline,able_rollback_time)
+        values(#{recordId},#{accountId},#{orderId},#{orderDescription},#{cost},#{deadline},#{ableRollbackTime});
+    </insert>
+
+
+    <select id="ableRollback" resultType="java.lang.Long">
+        select
+            order_id
+        from fund_order_record
+        where record_id=#{recordId} and account_id=#{accountId}
+        and now() &gt; able_rollback_time and is_pay=true and is_refund=false
+    </select>
+
+    <update id="refund">
+        update fund_order_record set is_refund=true
+        where order_id=#{orderId}
+        and now() &gt; able_rollback_time and is_pay=true and is_refund=false
+    </update>
+
+    <update id="ackPay">
+        update fund_order_record set is_pay=true
+        where record_id=#{recordId} and now() &lt; deadline
+        and is_pay=false and is_refund=false
+    </update>
+
+
+    <select id="getRecordIdByOrderId" resultType="java.lang.Long">
+        select
+            record_id
+        from fund_order_record
+        where order_id=#{orderId}
+    </select>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</mapper>

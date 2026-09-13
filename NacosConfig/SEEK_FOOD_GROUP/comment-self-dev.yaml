@@ -1,0 +1,51 @@
+spring:
+  #mysql的配置
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/seek_food_comment
+    username: root
+    password: 439176
+
+
+comment:
+  self:
+    params:
+      rules:
+        comment-description-max: 300
+        first-comment-image-dest: "D:/home/admin/image/comment/first"
+        second-comment-image-dest: "D:/home/admin/image/comment/second"
+    redis:
+      key:
+        comment-insert-cooldown: 
+          name: "comment:insert:cooldown"
+          duration: 4
+        first-get-simple-cooldown: 
+          name: "comment:first:simple:cooldown:"
+          duration: 1
+        second-get-list-cooldown: 
+          name: "comment:second:list:cooldown:"
+          duration: 1
+        comment-delete-cooldown: 
+          name: "comment:delete:cooldown"
+          duration: 4
+        first-comment-caffeine: 
+          name: "comment:caffeine:first:"
+          duration: 600
+        first-comment-id-count: 
+          name: "comment:first:id:count"
+          duration: null
+        second-comment-id-count: 
+          name: "comment:second:id:count"
+          duration: null
+      stream:
+        oldFileStream:
+          name: comment:stream:old:file
+          key-name: fileName
+          consumer:
+            group-name: DeleteGroup
+            number: 1
+    jvm-caffeine:
+      first-comment:
+        max-size: 100000
+        expire-time: 300
+

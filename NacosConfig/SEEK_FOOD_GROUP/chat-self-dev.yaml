@@ -1,0 +1,51 @@
+spring:
+  #mysql的配置
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/seek_food_chat
+    username: root
+    password: 439176
+
+
+chat:
+  self:
+    params: 
+      rules:
+        chat-description-max: 500
+        chat-room-ending-days: 7
+        chat-record-withdraw-deadline-minutes: 1
+        chat-record-image-delete-days: 7
+        chat-record-user-type: 1
+        chat-record-merchant-type: 2
+        chat-record-rider-type: 3
+        chat-record-image-dest: "D:/home/admin/image/chat/record"
+    redis:
+      key:
+        chat-room-get-list-cooldown:
+          name: "chat:room:get:list:cooldown:"
+          duration: 1
+        chat-record-insert-cooldown:
+          name: "chat:record:insert:cooldown:"
+          duration: 4
+        chat-record-get-list-cooldown:
+          name: "chat:record:get:list:cooldown:"
+          duration: 1
+        chat-record-withdraw-cooldown:
+          name: "chat:record:withdraw:cooldown:"
+          duration: 4
+        chat-room-websocket-cooldown:
+          name: "chat:room:websocket:cooldown:"
+          duration: 2
+        chat-room-id-count:
+          name: "chat:room:id:count"
+          duration: null
+        chat-record-id-count:
+          name: "chat:record:id:count"
+          duration: null
+      stream:
+        oldFileStream:
+          name: chat:stream:old:file
+          key-name: fileName
+          consumer:
+            group-name: DeleteGroup
+            number: 1

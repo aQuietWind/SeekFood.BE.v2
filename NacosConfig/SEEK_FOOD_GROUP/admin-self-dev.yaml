@@ -1,0 +1,51 @@
+spring:
+  #mysql的配置
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/seek_food_admin
+    username: root
+    password: 439176
+
+
+admin:
+  self:
+    params: 
+      rules:
+        admin-name: 123123123123
+        admin-password: 123456123456
+        suggestion-description-max: 300
+        suggestion-image-dest: "D:/home/admin/image/admin/suggestion"
+    redis:
+      key:
+        admin-login-cooldown:
+          name: "admin:login:cooldown:"
+          duration: 6
+        admin-insert-suggestion-cooldown:
+          name: "admin:insert:suggestion:cooldown:"
+          duration: 6
+        admin-get-suggestion-list-cooldown:
+          name: "admin:get:suggestion:list:cooldown:"
+          duration: 2
+        admin-ack-suggestion-cooldown:
+          name: "admin:ack:suggestion:cooldown:"
+          duration: 4
+        admin-id-count:
+          name: "admin:id:count"
+          duration: null
+        admin-suggestion-id-count:
+          name: "admin:suggestion:id:count"
+          duration: null
+        suggestion-caffeine:
+          name: "admin:suggestion:caffeine:"
+          duration: 600
+      stream:
+        oldFileStream:
+          name: admin:stream:old:file
+          key-name: fileName
+          consumer:
+            group-name: DeleteGroup
+            number: 1
+    jvm-caffeine:
+      suggestion:
+        max-size: 100000
+        expire-time: 300

@@ -1,0 +1,19 @@
+[
+    {
+        "resource": "all_service_api",
+        "paramIdx": 0,
+        "grade": 1,
+        "count": 10,
+        "durationInSec": 10,
+        "paramFlowItemList": [
+            {
+                "object": "10001",
+                "count": 2
+            },
+            {
+                "object": "hot_topic_99",
+                "count": 1
+            }
+        ]
+    }
+]

@@ -1,0 +1,23 @@
+common:
+  jwt:
+    header-separator: "-"
+    header-token-name: Token-Id
+    request-token-name: access_token
+    max-store: 3
+    user:
+      secret-key: 1234567890123456789012345678901234567890123456789012
+      header-sign: "1"
+      #这是七天有效期的毫秒值
+      token-duration: 604800000
+    merchant:
+      secret-key: 12345678901234567890123456789012345678901234567890123456789012345
+      header-sign: "2"
+      token-duration: 604800000
+    rider:
+      secret-key: 1234567890123456789012345678901234567890123456789012345678901234
+      header-sign: "3"
+      token-duration: 604800000
+    admin:
+      secret-key: 123456789012345678901234567890123456789012345678901234567890123
+      header-sign: "4"
+      token-duration: 604800000

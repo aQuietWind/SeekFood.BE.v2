@@ -1,0 +1,54 @@
+
+Put http://localhost:9200/merchant
+                 {
+                   "settings": {
+                     "number_of_shards": 1,
+                     "number_of_replicas": 1,
+                     "analysis": {
+                       "tokenizer": {
+                         "ngram_tokenizer": {
+                           "type": "ngram",
+                           "min_gram": 1,
+                           "max_gram": 2,
+                           "token_chars": ["letter", "digit"]
+                         }
+                       },
+                       "analyzer": {
+                         "ngram_analyzer": {
+                           "tokenizer": "ngram_tokenizer"
+                         }
+                       }
+                     }
+                   },
+                   "mappings": {
+                     "properties": {
+                       "merchant_id":{
+                         "type":"long"
+                       },
+                       "merchant_name": {
+                         "type": "text",
+                         "analyzer": "ngram_analyzer"
+                       },
+                       "merchant_collect_amount": {
+                         "type": "integer"
+                       },
+                       "merchant_order_amount": {
+                         "type": "integer"
+                       },
+                       "merchant_home_image_addr":{
+                         "type":"keyword",
+                         "index":false
+                       },
+                       "merchant_location":{
+                         "type":"geo_point",
+                         "index":false
+                       },
+                       "is_open":{
+                          "type":"boolean"
+                       },
+                       "is_delete":{
+                          "type":"boolean"
+                       }
+                     }
+                   }
+                 }

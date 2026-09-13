@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.seek.food.merchant.Mapper.RegisterMapper">
+    <insert id="insertMerchant">
+        insert into merchant
+        (merchant_id,merchant_name,merchant_master_phone_number,merchant_password,merchant_proof_image_addr,merchant_show_image_addr)
+        values(#{merchantId},concat('商家',#{merchantId}),#{phoneNumber},#{password},'[]','[]');
+    </insert>
+</mapper>

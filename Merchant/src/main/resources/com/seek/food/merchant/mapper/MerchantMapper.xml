@@ -1,0 +1,193 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.seek.food.merchant.Mapper.MerchantMapper">
+
+    <!-- 全局统一字段映射 -->
+    <resultMap id="MerchantResultMap" type="com.seek.food.dto.Merchant.MerchantDTO">
+        <result property="qualified" column="is_qualified" />
+        <result property="open" column="is_open" />
+        <result property="delete" column="is_delete" />
+    </resultMap>
+    <!-- Es-Mysql字段映射 -->
+    <resultMap id="EsMerchantResultMap" type="com.seek.food.dto.Merchant.MerchantEsDTO">
+        <result property="open" column="is_open" />
+        <result property="delete" column="is_delete" />
+    </resultMap>
+
+    <select id="getMerchantById" resultMap="MerchantResultMap">
+        select
+            merchant_id,
+            merchant_name,
+            merchant_master_name,
+            merchant_home_image_addr,
+            merchant_proof_image_addr,
+            merchant_show_image_addr,
+            merchant_show_description,
+            merchant_addr,
+            merchant_lon,
+            merchant_lat,
+            merchant_order_amount,
+            merchant_first_comment_amount,
+            merchant_like_amount,
+            merchant_collect_amount,
+            merchant_employee_amount,
+            create_time,
+            is_qualified,
+            is_open
+        from merchant where merchant_id=#{merchantId} and is_delete=false
+    </select>
+
+    <update id="setMerchantMaster">
+        update merchant set
+        merchant_master_name=#{merchantMasterName},merchant_master_code=#{merchantMasterCode},merchant_master_image_addr=#{merchantMasterImageAddr}
+        where merchant_id=#{merchantId} and is_delete=false
+    </update>
+
+    <update id="addMerchantProofImage">
+        update merchant set merchant_proof_image_addr=JSON_ARRAY_APPEND(merchant_proof_image_addr,'$',#{addr})
+        where merchant_id=#{merchantId} and JSON_LENGTH(merchant_proof_image_addr)+1 &lt;= #{max} and is_delete=false
+    </update>
+
+    <select id="getMerchantProofImageByIndex" resultType="java.lang.String">
+        select JSON_UNQUOTE(JSON_EXTRACT(merchant_proof_image_addr, CONCAT('$[',#{index},']'))) from merchant
+        where merchant_id=#{merchantId} and is_delete=false
+    </select>
+
+    <update id="removeMerchantProofImage">
+        update merchant set merchant_proof_image_addr=JSON_REMOVE(merchant_proof_image_addr,concat('$[',#{index},']'))
+        where merchant_id=#{merchantId} and JSON_UNQUOTE(JSON_EXTRACT(merchant_proof_image_addr, CONCAT('$[',#{index},']')))=#{oldAddr} and is_delete=false
+    </update>
+
+    <update id="replaceMerchantProofImage">
+        update merchant set merchant_proof_image_addr=JSON_REPLACE(merchant_proof_image_addr,concat('$[',#{index},']'),#{addr})
+        where merchant_id=#{merchantId} and JSON_UNQUOTE(JSON_EXTRACT(merchant_proof_image_addr, CONCAT('$[',#{index},']')))=#{oldAddr} and is_delete=false
+    </update>
+
+    <update id="addShowImage">
+        update merchant set merchant_show_image_addr=JSON_ARRAY_APPEND(merchant_show_image_addr,'$',#{addr})
+        where merchant_id=#{merchantId} and JSON_LENGTH(merchant_show_image_addr)+1 &lt;= #{max} and is_delete=false
+    </update>
+
+    <select id="getShowImageByIndex" resultType="java.lang.String">
+        select JSON_UNQUOTE(JSON_EXTRACT(merchant_show_image_addr, CONCAT('$[',#{index},']'))) from merchant
+        where merchant_id=#{merchantId} and is_delete=false
+    </select>
+
+    <update id="removeShowImage">
+        update merchant set merchant_show_image_addr=JSON_REMOVE(merchant_show_image_addr,concat('$[',#{index},']'))
+        where merchant_id=#{merchantId} and JSON_UNQUOTE(JSON_EXTRACT(merchant_show_image_addr, CONCAT('$[',#{index},']')))=#{oldAddr} and is_delete=false
+    </update>
+
+    <update id="replaceShowImage">
+        update merchant set merchant_show_image_addr=JSON_REPLACE(merchant_show_image_addr,concat('$[',#{index},']'),#{addr})
+        where merchant_id=#{merchantId} and JSON_UNQUOTE(JSON_EXTRACT(merchant_show_image_addr, CONCAT('$[',#{index},']')))=#{oldAddr} and is_delete=false
+    </update>
+
+    <select id="getHomeImage" resultType="java.lang.String">
+        select merchant_home_image_addr from merchant where merchant_id=#{merchantId} and is_delete=false
+    </select>
+
+    <update id="updateHomeImage">
+        update merchant set merchant_home_image_addr=#{addr} where merchant_id=#{merchantId} and is_delete=false and merchant_home_image_addr
+        <if test="oldAddr!=null">=#{oldAddr}</if>
+        <if test="oldAddr==null">IS NULL</if>
+    </update>
+
+    <update id="updateMessage">
+        update merchant
+        <set>
+            <if test="merchantName!=null">merchant_name=#{merchantName},</if>
+            <if test="merchantShowDescription!=null">merchant_show_description=#{merchantShowDescription},</if>
+            <if test="merchantAddr!=null">merchant_addr=#{merchantAddr},</if>
+            <if test="merchantLon!=null and merchantLat!=null">merchant_lon=#{merchantLon},merchant_lat=#{merchantLat},</if>
+        </set>
+        where merchant_id=#{merchantId} and is_delete=false
+    </update>
+
+    <select id="getPhoneNumber" resultType="java.lang.String">
+        select merchant_master_phone_number from merchant where merchant_id=#{merchantId} and is_delete=false
+    </select>
+
+    <update id="updatePassword">
+        update merchant set merchant_password=#{password} where merchant_id=#{merchantId} and is_delete=false
+    </update>
+
+    <update id="deleteMerchant">
+        <!-- 删除后防止后续插入新商家时唯一约束报错 -->
+        update merchant set is_delete=true,merchant_master_phone_number=concat(merchant_id,"删除",merchant_master_phone_number)
+        where merchant_id=#{merchantId} and is_delete=false
+    </update>
+
+    <update id="updateOpen">
+        <!-- mysql底层为数字存储boolean值，所以可直接进行数字判断（1=true，0=false） -->
+        update merchant set is_open=1-is_open where merchant_id=#{merchantId} and is_qualified=1 and is_delete=false
+    </update>
+
+    <select id="getEsMerchant" resultMap="EsMerchantResultMap">
+        select
+            merchant_id,
+            merchant_name,
+            merchant_home_image_addr,
+            merchant_collect_amount,
+            merchant_order_amount,
+            <!-- es的字符串格式为纬经度格式，所以这里需要反转 -->
+            concat(merchant_lat,',',merchant_lon) as merchant_location,
+            is_open,
+            is_delete
+        from merchant where merchant_id=#{merchantId}
+    </select>
+
+    <select id="getDeleteMerchant" resultMap="MerchantResultMap">
+        select
+            merchant_id,
+            merchant_name,
+            merchant_master_name,
+            merchant_home_image_addr,
+            merchant_proof_image_addr,
+            merchant_show_image_addr,
+            merchant_show_description,
+            merchant_addr,
+            merchant_lon,
+            merchant_lat,
+            merchant_order_amount,
+            merchant_first_comment_amount,
+            merchant_like_amount,
+            merchant_collect_amount,
+            merchant_employee_amount,
+            create_time,
+            is_qualified,
+            is_open,
+            is_delete
+        from merchant where merchant_id=#{merchantId} and is_delete=true
+    </select>
+
+    <update id="updateEmployeeAmount">
+        update merchant set merchant_employee_amount=merchant_employee_amount+#{changeNumber} where merchant_id=#{merchantId} and is_delete=false
+    </update>
+
+    <update id="updateOrderAmount">
+        update merchant set merchant_order_amount=merchant_order_amount+#{changeNumber} where merchant_id=#{merchantId} and is_delete=false
+    </update>
+
+    <update id="updateLikeAmount">
+        update merchant set merchant_like_amount=merchant_like_amount+#{changeNumber} where merchant_id=#{merchantId} and is_delete=false
+    </update>
+
+    <update id="updateCollectAmount">
+        update merchant set merchant_collect_amount=merchant_collect_amount+#{changeNumber} where merchant_id=#{merchantId} and is_delete=false
+    </update>
+
+    <update id="updateFirstCommentAmount">
+        update merchant set merchant_first_comment_amount=merchant_first_comment_amount+#{changeNumber} where merchant_id=#{merchantId} and is_delete=false
+    </update>
+
+
+    <select id="getLonLat" resultType="com.seek.food.dto.Common.SimplePoint">
+        select
+            merchant_lon as lon,
+            merchant_lat as lat
+        from merchant where merchant_id=#{merchantId} and is_delete=false
+    </select>
+
+</mapper>

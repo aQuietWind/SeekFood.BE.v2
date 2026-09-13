@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.seek.food.chat.Mapper.ChatRecordMapper">
+
+    <!-- 全局统一字段映射 -->
+    <resultMap id="ChatRecordResultMap" type="com.seek.food.dto.Chat.ChatRecordDTO">
+        <result property="withdraw" column="is_withdraw" />
+    </resultMap>
+
+
+    <insert id="insert">
+        insert into chat_record (
+                               record_id,
+                               chat_room_id,
+                               account_id,
+                               account_type,
+                               chat_description,
+                               chat_show_image_addr,
+                               withdraw_deadline
+        ) values(#{recordId},
+                 #{chatRoomId},
+                 #{accountId},
+                 #{accountType},
+                 #{chatDescription},
+                 #{chatShowImageAddr},
+                 #{withdrawDeadline});
+    </insert>
+
+    <select id="userGetList" resultMap="ChatRecordResultMap">
+        select
+            record_id,
+            chat_room_id,
+            account_id,
+            account_type,
+            chat_description,
+            chat_show_image_addr,
+            create_time,
+            withdraw_deadline,
+            is_withdraw
+        from chat_record
+        where (select user_id from chat_room where room_id=#{chatRoomId} and is_complete=false and now() &lt; ending_time)=#{accountId}
+        and is_withdraw=false
+        order by record_id desc limit #{start},#{need}
+    </select>
+    <select id="merchantGetList" resultMap="ChatRecordResultMap">
+        select
+            record_id,
+            chat_room_id,
+            account_id,
+            account_type,
+            chat_description,
+            chat_show_image_addr,
+            create_time,
+            withdraw_deadline,
+            is_withdraw
+        from chat_record
+        where (select merchant_id from chat_room where room_id=#{chatRoomId} and is_complete=false and now() &lt; ending_time)=#{accountId}
+        and is_withdraw=false
+        order by record_id desc limit #{start},#{need}
+    </select>
+    <select id="riderGetList" resultMap="ChatRecordResultMap">
+        select
+            record_id,
+            chat_room_id,
+            account_id,
+            account_type,
+            chat_description,
+            chat_show_image_addr,
+            create_time,
+            withdraw_deadline,
+            is_withdraw
+        from chat_record
+        where (select rider_id from chat_room where room_id=#{chatRoomId} and is_complete=false and now() &lt; ending_time)=#{accountId}
+        and is_withdraw=false
+        order by record_id desc limit #{start},#{need}
+    </select>
+
+    <update id="withdraw">
+        update chat_record set is_withdraw=true
+        where record_id=#{recordId} and account_id=#{accountId} and is_withdraw=false and now() &lt; withdraw_deadline
+    </update>
+</mapper>

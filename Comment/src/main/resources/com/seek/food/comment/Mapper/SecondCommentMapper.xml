@@ -1,0 +1,63 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.seek.food.comment.Mapper.SecondCommentMapper">
+
+    <!-- 全局统一字段映射 -->
+    <resultMap id="SecondCommentResultMap" type="com.seek.food.dto.Comment.SecondCommentDTO">
+        <result property="merchantComment" column="is_merchant_comment" />
+        <result property="delete" column="is_delete" />
+    </resultMap>
+
+    <insert id="insertComment">
+        insert into second_comment (
+                                    second_comment_id,
+                                    first_comment_id,
+                                    account_id,
+                                    comment_image_addr,
+                                    comment_description,
+                                    is_merchant_comment
+        )
+        values(
+               #{secondCommentId},
+               #{firstCommentId},
+               #{accountId},
+               #{commentImageAddr},
+               #{commentDescription},
+               #{merchantComment}
+              );
+    </insert>
+
+    <select id="getList" resultMap="SecondCommentResultMap">
+        select
+            second_comment_id,
+            first_comment_id,
+            account_id,
+            comment_image_addr,
+            comment_description,
+            create_time,
+            like_amount,
+            is_merchant_comment,
+            is_delete
+        from second_comment
+        where first_comment_id=#{firstCommentId} and is_delete=false
+        order by second_comment_id desc limit #{start},#{need}
+    </select>
+
+    <update id="deleteComment">
+        update second_comment set is_delete=true
+        where second_comment_id=#{commentId} and account_id=#{accountId} and is_delete=false
+    </update>
+
+    <select id="getImageAddrAfterDelete" resultType="java.lang.String">
+        select
+            comment_image_addr
+        from second_comment
+        where second_comment_id=#{commentId} and is_delete=true
+    </select>
+
+    <update id="updateLikeAmount">
+        update second_comment set like_amount=like_amount+#{changeNumber} where second_comment_id=#{commentId}
+    </update>
+
+</mapper>

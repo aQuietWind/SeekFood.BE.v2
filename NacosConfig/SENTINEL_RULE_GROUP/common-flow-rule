@@ -1,0 +1,11 @@
+[
+    {
+        "resource": "all_service_api",
+        "limitApp": "default",
+        "grade": 1,
+        "count": 100,
+        "strategy": 0,
+        "controlBehavior": 1,
+        "clusterMode": false
+    }
+]

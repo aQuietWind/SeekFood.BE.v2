@@ -1,0 +1,87 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.seek.food.voucher.Mapper.VoucherConnectionMapper">
+
+    <!-- 全局统一字段映射 -->
+    <resultMap id="VoucherConnectionResultMap" type="com.seek.food.dto.Voucher.VoucherConnectionDTO">
+    </resultMap>
+
+    <insert id="insertConnection">
+        insert into voucher_connection (connection_id,voucher_id,user_id,promotion_id,start_time,end_time)
+        values(#{connectionId},#{voucherId},#{userId},#{promotionId},#{startTime},#{endTime});
+    </insert>
+
+    <select id="getSimple" resultMap="VoucherConnectionResultMap">
+        select
+            connection_id,
+            voucher_id,
+            start_time,
+            end_time,
+            is_use
+        from voucher_connection
+        where user_id=#{userId}
+        order by connection_id desc limit #{start},#{need}
+    </select>
+
+    <select id="getSimpleEffective" resultMap="VoucherConnectionResultMap">
+        select
+            connection_id,
+            voucher_id,
+            start_time,
+            end_time,
+            is_use
+        from voucher_connection
+        where user_id=#{userId} and start_time &lt;= now() and end_time &gt;= now() and is_use=false
+        order by connection_id desc limit #{start},#{need}
+    </select>
+
+    <select id="getDetail" resultMap="VoucherConnectionResultMap">
+        select
+            connection_id,
+            voucher_id,
+            user_id,
+            promotion_id,
+            order_id,
+            start_time,
+            end_time,
+            create_time,
+            is_lock,
+            is_use
+        from voucher_connection
+        where connection_id=#{connectionId} and user_id=#{userId}
+    </select>
+
+    <update id="rollback">
+        update voucher_connection set order_id=null,is_lock=false,is_use=false
+        where order_id=#{orderId} and is_lock=true
+    </update>
+
+    <update id="use">
+        update voucher_connection set is_use=true
+        where order_id=#{orderId} and is_lock=true and is_use=false
+    </update>
+
+    <select id="exist">
+        select count(*) from voucher_connection where user_id=#{userId} and promotion_id=#{promotionId}
+    </select>
+
+    <select id="check" resultType="java.lang.Double">
+        select discount_cost from merchant_voucher
+        where voucher_id=(select voucher_id from voucher_connection where connection_id=#{connectionId} and user_id=#{userId} and is_lock=false and is_use=false)
+        and start_time &lt;= now() and end_time &gt;= now()
+        and min_cost &lt;= #{cost}
+    </select>
+
+    <update id="lock">
+        update voucher_connection set is_lock=true,order_id=#{orderId}
+        where connection_id=#{connectionId} and user_id=#{userId} and is_lock=false and is_use=false
+    </update>
+
+    <select id="getConnectionIdByOrderId" resultType="java.lang.Long">
+        select connection_id from voucher_connection
+        where order_id=#{orderId}
+    </select>
+
+
+</mapper>

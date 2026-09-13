@@ -1,0 +1,56 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.seek.food.merchant.Mapper.LoginMapper">
+
+    <!-- 全局统一字段映射 -->
+    <resultMap id="MerchantResultMap" type="com.seek.food.dto.Merchant.MerchantDTO">
+        <result property="qualified" column="is_qualified" />
+        <result property="open" column="is_open" />
+    </resultMap>
+
+    <select id="login" resultMap="MerchantResultMap">
+        select
+            merchant_id,
+            merchant_name,
+            merchant_master_name,
+            merchant_home_image_addr,
+            merchant_proof_image_addr,
+            merchant_show_image_addr,
+            merchant_show_description,
+            merchant_addr,
+            merchant_lon,
+            merchant_lat,
+            merchant_order_amount,
+            merchant_first_comment_amount,
+            merchant_like_amount,
+            merchant_collect_amount,
+            merchant_employee_amount,
+            create_time,
+            is_qualified,
+            is_open
+        from merchant where merchant_master_phone_number=#{phoneNumber} and is_delete=false
+    </select>
+    <select id="loginByPassword" resultMap="MerchantResultMap">
+        select
+            merchant_id,
+            merchant_name,
+            merchant_master_name,
+            merchant_home_image_addr,
+            merchant_proof_image_addr,
+            merchant_show_image_addr,
+            merchant_show_description,
+            merchant_addr,
+            merchant_lon,
+            merchant_lat,
+            merchant_order_amount,
+            merchant_first_comment_amount,
+            merchant_like_amount,
+            merchant_collect_amount,
+            merchant_employee_amount,
+            create_time,
+            is_qualified,
+            is_open
+        from merchant where merchant_master_phone_number=#{phoneNumber} and merchant_password=#{password} and is_delete=false
+    </select>
+</mapper>

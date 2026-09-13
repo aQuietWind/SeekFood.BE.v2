@@ -1,0 +1,64 @@
+spring:
+  #mysql的配置
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/seek_food_promotion
+    username: root
+    password: 439176
+
+
+
+promotion:
+  self:
+    params: 
+      rules:
+        promotion-title-max: 15
+        promotion-description-max: 500
+        promotion-notice-max: 200
+        grab-amount-min: 100
+        duration-day-min: 1
+    redis:
+      key:
+        merchant-login-promotion-insert-cooldown:
+          name: "promotion:merchant:login:insert:cooldown:"
+          duration: 6
+        merchant-grab-promotion-insert-cooldown:
+          name: "promotion:merchant:grab:insert:cooldown:"
+          duration: 6
+        merchant-login-promotion-get-simple-cooldown:
+          name: "promotion:merchant:login:simple:cooldown:"
+          duration: 1
+        merchant-login-promotion-get-simple-effective-cooldown:
+          name: "promotion:merchant:login:simple:effective:cooldown:"
+          duration: 1
+        merchant-grab-promotion-get-simple-cooldown:
+          name: "promotion:merchant:grab:simple:cooldown:"
+          duration: 1
+        merchant-grab-promotion-get-simple-effective-cooldown:
+          name: "promotion:merchant:grab:simple:effective:cooldown:"
+          duration: 1
+        merchant-login-promotion-id-count:
+          name: "promotion:merchant:login:id:count"
+          duration: null
+        merchant-grab-promotion-id-count:
+          name: "promotion:merchant:grab:id:count"
+          duration: null
+        merchant-login-promotion-message-caffeine:
+          name: "promotion:merchant:login:caffeine:"
+          duration: 600
+        merchant-grab-promotion-message-caffeine:
+          name: "promotion:merchant:grab:caffeine:"
+          duration: 600
+        merchant-login-promotion-get-voucher-lock:
+          name: "promotion:merchant:login:get:voucher:lock:"
+          duration: null
+        merchant-grab-promotion-get-voucher-lock:
+          name: "promotion:merchant:grab:get:voucher:lock:"
+          duration: null
+    jvm-caffeine:
+      merchant-login-promotion:
+        max-size: 100000
+        expire-time: 300
+      merchant-grab-promotion:
+        max-size: 100000
+        expire-time: 300
