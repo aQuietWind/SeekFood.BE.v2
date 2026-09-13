@@ -26,12 +26,12 @@ spring:
   #声明配置引入，按顺序引入，后面的会覆盖前面的
   config:
     import:
-      - nacos:common-default-connection-dev.yaml?group=COMMON_GROUP&refreshEnabled=true
-      - nacos:common-jwt-dev.yaml?group=COMMON_GROUP&refreshEnabled=true
-      - nacos:common-request-path-dev.yaml?group=COMMON_GROUP&refreshEnabled=true
-      - nacos:common-redis-key-dev.yaml?group=COMMON_GROUP&refreshEnabled=true
-      - nacos:gateway-self-dev.yaml?group=SEEK_FOOD_GROUP&refreshEnabled=true
-      - nacos:gateway-self-api-dev.yaml?group=SEEK_FOOD_GROUP&refreshEnabled=true
+      - nacos:common-default-connection-dev?group=COMMON_GROUP&refreshEnabled=true
+      - nacos:common-jwt-dev?group=COMMON_GROUP&refreshEnabled=true
+      - nacos:common-request-path-dev?group=COMMON_GROUP&refreshEnabled=true
+      - nacos:common-redis-key-dev?group=COMMON_GROUP&refreshEnabled=true
+      - nacos:gateway-self-dev?group=SEEK_FOOD_GROUP&refreshEnabled=true
+      - nacos:gateway-self-api-dev?group=SEEK_FOOD_GROUP&refreshEnabled=true
 
 #  端口设置
 server:

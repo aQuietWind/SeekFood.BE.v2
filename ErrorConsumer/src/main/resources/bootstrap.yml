@@ -21,8 +21,8 @@ spring:
   #声明配置引入，按顺序引入，后面的会覆盖前面的
   config:
     import:
-      - nacos:common-default-connection-dev.yaml?group=COMMON_GROUP&refreshEnabled=true
-      - nacos:mq-name-bind-dev.yaml?group=MQ_GROUP&refreshEnabled=true
+      - nacos:common-default-connection-dev?group=COMMON_GROUP&refreshEnabled=true
+      - nacos:mq-name-bind-dev?group=MQ_GROUP&refreshEnabled=true
 
 
 #  端口设置

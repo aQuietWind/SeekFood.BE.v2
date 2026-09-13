@@ -26,13 +26,13 @@ spring:
   #声明配置引入，按顺序引入，后面的会覆盖前面的
   config:
     import:
-      - nacos:common-redis-key-dev.yaml?group=COMMON_GROUP&refreshEnabled=true
-      - nacos:common-jwt-dev.yaml?group=COMMON_GROUP&refreshEnabled=true
-      - nacos:common-default-connection-dev.yaml?group=COMMON_GROUP&refreshEnabled=true
-      - nacos:common-sentinel-rule-dev.yaml?group=COMMON_GROUP&refreshEnabled=true
-      - nacos:common-param-rules-dev.yaml?group=COMMON_GROUP&refreshEnabled=true
-      - nacos:mq-name-bind-dev.yaml?group=MQ_GROUP&refreshEnabled=true
-      - nacos:${spring.application.name}-self-dev.yaml?group=${spring.cloud.nacos.discovery.group}&refreshEnabled=true
+      - nacos:common-redis-key-dev?group=COMMON_GROUP&refreshEnabled=true
+      - nacos:common-jwt-dev?group=COMMON_GROUP&refreshEnabled=true
+      - nacos:common-default-connection-dev?group=COMMON_GROUP&refreshEnabled=true
+      - nacos:common-sentinel-rule-dev?group=COMMON_GROUP&refreshEnabled=true
+      - nacos:common-param-rules-dev?group=COMMON_GROUP&refreshEnabled=true
+      - nacos:mq-name-bind-dev?group=MQ_GROUP&refreshEnabled=true
+      - nacos:${spring.application.name}-self-dev?group=${spring.cloud.nacos.discovery.group}&refreshEnabled=true
 
 #  端口设置
 server:
