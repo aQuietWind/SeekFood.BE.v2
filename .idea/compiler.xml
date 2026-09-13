@@ -9,13 +9,17 @@
         <outputRelativeToContentRoot value="true" />
         <module name="Order" />
         <module name="Comment" />
+        <module name="CommonUtil" />
         <module name="User" />
         <module name="Fund" />
+        <module name="RocketMQUtil" />
         <module name="Config" />
         <module name="ErrorConsumer" />
         <module name="Interaction" />
+        <module name="RedisUtil" />
         <module name="Meal" />
         <module name="Util" />
+        <module name="EsUtil" />
         <module name="Admin" />
         <module name="Promotion" />
         <module name="Rider" />
@@ -24,7 +28,9 @@
         <module name="Merchant" />
         <module name="Gateway" />
         <module name="Chat" />
+        <module name="ConfigObject" />
         <module name="DTO" />
+        <module name="LangChain4jUtil" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="21" />
@@ -34,18 +40,24 @@
       <module name="Admin" options="-parameters" />
       <module name="Chat" options="-parameters" />
       <module name="Comment" options="-parameters" />
+      <module name="CommonUtil" options="-parameters" />
       <module name="Config" options="-parameters" />
+      <module name="ConfigObject" options="-parameters" />
       <module name="DTO" options="-parameters" />
       <module name="Employee" options="-parameters" />
       <module name="ErrorConsumer" options="-parameters" />
+      <module name="EsUtil" options="-parameters" />
       <module name="Fund" options="-parameters" />
       <module name="Gateway" options="-parameters" />
       <module name="Interaction" options="-parameters" />
+      <module name="LangChain4jUtil" options="-parameters" />
       <module name="Meal" options="-parameters" />
       <module name="Merchant" options="-parameters" />
       <module name="Order" options="-parameters" />
       <module name="Promotion" options="-parameters" />
+      <module name="RedisUtil" options="-parameters" />
       <module name="Rider" options="-parameters" />
+      <module name="RocketMQUtil" options="-parameters" />
       <module name="User" options="-parameters" />
       <module name="Util" options="-parameters" />
       <module name="Voucher" options="-parameters" />

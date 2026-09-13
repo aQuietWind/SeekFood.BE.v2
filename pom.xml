@@ -129,6 +129,12 @@
                 <artifactId>Config</artifactId>
                 <version>${self.version}</version>
             </dependency>
+            <!--该项目的ConfigObject模块        -->
+            <dependency>
+                <groupId>${groupId}</groupId>
+                <artifactId>ConfigObject</artifactId>
+                <version>${self.version}</version>
+            </dependency>
             <!--        cookie解析包-->
             <dependency>
                 <groupId>jakarta.servlet</groupId>
@@ -165,6 +171,12 @@
         <module>DTO</module>
         <module>Util</module>
         <module>Config</module>
+        <module>RedisUtil</module>
+        <module>LangChain4jUtil</module>
+        <module>RocketMQUtil</module>
+        <module>EsUtil</module>
+        <module>CommonUtil</module>
+        <module>ConfigObject</module>
     </modules>
 
 

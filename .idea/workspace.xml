@@ -5,21 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="066cab83-f215-42e2-8482-62b8a6c4cc75" name="更改" comment="">
-      <change beforePath="$PROJECT_DIR$/Admin/src/main/resources/bootstrap.yml" beforeDir="false" afterPath="$PROJECT_DIR$/Admin/src/main/resources/bootstrap.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Chat/src/main/resources/bootstrap.yml" beforeDir="false" afterPath="$PROJECT_DIR$/Chat/src/main/resources/bootstrap.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Comment/src/main/resources/bootstrap.yml" beforeDir="false" afterPath="$PROJECT_DIR$/Comment/src/main/resources/bootstrap.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Employee/src/main/resources/bootstrap.yml" beforeDir="false" afterPath="$PROJECT_DIR$/Employee/src/main/resources/bootstrap.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ErrorConsumer/src/main/resources/bootstrap.yml" beforeDir="false" afterPath="$PROJECT_DIR$/ErrorConsumer/src/main/resources/bootstrap.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Fund/src/main/resources/bootstrap.yml" beforeDir="false" afterPath="$PROJECT_DIR$/Fund/src/main/resources/bootstrap.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gateway/src/main/resources/bootstrap.yml" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/main/resources/bootstrap.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Interaction/src/main/resources/bootstrap.yml" beforeDir="false" afterPath="$PROJECT_DIR$/Interaction/src/main/resources/bootstrap.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Meal/src/main/resources/bootstrap.yml" beforeDir="false" afterPath="$PROJECT_DIR$/Meal/src/main/resources/bootstrap.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Merchant/src/main/resources/bootstrap.yml" beforeDir="false" afterPath="$PROJECT_DIR$/Merchant/src/main/resources/bootstrap.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Order/src/main/resources/bootstrap.yml" beforeDir="false" afterPath="$PROJECT_DIR$/Order/src/main/resources/bootstrap.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Promotion/src/main/resources/bootstrap.yml" beforeDir="false" afterPath="$PROJECT_DIR$/Promotion/src/main/resources/bootstrap.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Rider/src/main/resources/bootstrap.yml" beforeDir="false" afterPath="$PROJECT_DIR$/Rider/src/main/resources/bootstrap.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/User/src/main/resources/bootstrap.yml" beforeDir="false" afterPath="$PROJECT_DIR$/User/src/main/resources/bootstrap.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Voucher/src/main/resources/bootstrap.yml" beforeDir="false" afterPath="$PROJECT_DIR$/Voucher/src/main/resources/bootstrap.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CommonUtil/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ConfigObject/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EsUtil/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LangChain4jUtil/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RedisUtil/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RocketMQUtil/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RedisUtil/src/main/java/com/seek/food/redisutil/Redis/DurationUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/RedisUtil/src/main/java/com/seek/food/redisutil/Redis/DurationUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,61 +37,61 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.0017360208638468" />
-      <entry key="MS500" value="1.2853934890773946" />
-      <entry key="S2" value="2.215445343900978" />
-      <entry key="S5" value="3.850355019753649" />
-      <entry key="S10" value="5.659361225422479" />
-      <entry key="S30" value="8.420445846394795" />
-      <entry key="S60" value="9.558836072616746" />
-      <entry key="M2" value="10.258273861763778" />
-      <entry key="M5" value="11.320984683452105" />
-      <entry key="M10" value="12.793595622318447" />
-      <entry key="M15" value="13.731921339975491" />
-      <entry key="M30" value="15.072938061279974" />
-      <entry key="H1" value="15.948858561131276" />
-      <entry key="H2" value="16.450422931972362" />
-      <entry key="H4" value="16.718924731241206" />
-      <entry key="D1" value="16.95225565297365" />
-      <entry key="W1" value="16.99315703787837" />
+      <entry key="MS100" value="0.0" />
+      <entry key="MS500" value="5.935168832980366E-153" />
+      <entry key="S2" value="1.6120554120850035E-38" />
+      <entry key="S5" value="1.5309447427600499E-15" />
+      <entry key="S10" value="8.539630078648942E-8" />
+      <entry key="S30" value="0.016474299212994245" />
+      <entry key="S60" value="0.40067321390050276" />
+      <entry key="M2" value="2.153229653202635" />
+      <entry key="M5" value="6.396444853366114" />
+      <entry key="M10" value="10.700061243840732" />
+      <entry key="M15" value="13.968318741998429" />
+      <entry key="M30" value="20.1088659699996" />
+      <entry key="H1" value="25.303547434710616" />
+      <entry key="H2" value="28.764717777335576" />
+      <entry key="H4" value="30.77423711948744" />
+      <entry key="D1" value="32.61294260749121" />
+      <entry key="W1" value="32.944296933314284" />
     </decayedCancelled>
     <decayedSelected>
-      <entry key="MS100" value="0.0" />
-      <entry key="MS500" value="0.0" />
-      <entry key="S2" value="0.0" />
-      <entry key="S5" value="0.0" />
-      <entry key="S10" value="0.0" />
-      <entry key="S30" value="0.0" />
-      <entry key="S60" value="0.0" />
-      <entry key="M2" value="0.0" />
-      <entry key="M5" value="0.0" />
-      <entry key="M10" value="0.0" />
-      <entry key="M15" value="0.0" />
-      <entry key="M30" value="0.0" />
-      <entry key="H1" value="0.0" />
-      <entry key="H2" value="0.0" />
-      <entry key="H4" value="0.0" />
-      <entry key="D1" value="0.0" />
-      <entry key="W1" value="0.0" />
+      <entry key="MS100" value="1.00003094358764" />
+      <entry key="MS500" value="1.1253470544876347" />
+      <entry key="S2" value="1.5950158481533379" />
+      <entry key="S5" value="1.8124776317624252" />
+      <entry key="S10" value="1.9013754290004532" />
+      <entry key="S30" value="1.9707708804920858" />
+      <entry key="S60" value="2.1284476199108635" />
+      <entry key="M2" value="2.9677933661997997" />
+      <entry key="M5" value="5.3577720161100375" />
+      <entry key="M10" value="7.161516787879375" />
+      <entry key="M15" value="7.967801452151049" />
+      <entry key="M30" value="8.906401886210705" />
+      <entry key="H1" value="9.432259405193657" />
+      <entry key="H2" value="9.710684174264486" />
+      <entry key="H4" value="9.853953486915032" />
+      <entry key="D1" value="9.975463697537746" />
+      <entry key="W1" value="9.996490002079126" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.9346982940618958" />
-      <entry key="MS500" value="1.2692625072203259" />
-      <entry key="S2" value="2.2094330812883527" />
-      <entry key="S5" value="3.8464508240210193" />
-      <entry key="S10" value="5.656517472714233" />
-      <entry key="S30" value="8.41900949559221" />
-      <entry key="S60" value="9.558012642574294" />
-      <entry key="M2" value="10.257802731038414" />
-      <entry key="M5" value="11.320464181693627" />
-      <entry key="M10" value="12.792976558852509" />
-      <entry key="M15" value="13.73134565610954" />
-      <entry key="M30" value="15.072530739648412" />
-      <entry key="H1" value="15.948615264831815" />
-      <entry key="H2" value="16.450289854871958" />
-      <entry key="H4" value="16.718855123124932" />
-      <entry key="D1" value="16.9522436061316" />
-      <entry key="W1" value="16.993155305733097" />
+      <entry key="MS100" value="0.010972225591706807" />
+      <entry key="MS500" value="0.40686292255520173" />
+      <entry key="S2" value="0.9878807263831617" />
+      <entry key="S5" value="1.4281894467946423" />
+      <entry key="S10" value="1.673155025389208" />
+      <entry key="S30" value="1.90114837634589" />
+      <entry key="S60" value="2.481022155998887" />
+      <entry key="M2" value="5.088331907347222" />
+      <entry key="M5" value="11.733260438110467" />
+      <entry key="M10" value="17.84832435620032" />
+      <entry key="M15" value="21.926404290395986" />
+      <entry key="M30" value="29.009817295842254" />
+      <entry key="H1" value="34.732878958679514" />
+      <entry key="H2" value="38.47387610038458" />
+      <entry key="H4" value="40.62741034973852" />
+      <entry key="D1" value="42.5882736710053" />
+      <entry key="W1" value="42.94076792160894" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo"><![CDATA[{
@@ -103,19 +99,25 @@
   "fromUser": false
 }]]></component>
   <component name="ProjectId" id="3JGGZh0yA29zT2qWy3OW4HvfTnw" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Maven.SeekFood [clean].executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "Spring Boot.UserApplication.executor": "Debug",
     "codeWithMe.voiceChat.enabledByDefault": "false",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/Projects/SeekFoodv2",
+    "last_opened_file_path": "D:/Projects/SeekFoodv2/RedisUtil/src/main/java/com/seek/food/redisutil/Redis",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -125,8 +127,16 @@
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Projects\SeekFoodv2\RedisUtil\src\main\java\com\seek\food\redisutil\Redis" />
+      <recent name="D:\Projects\SeekFoodv2\ConfigObject\src\main\java\com\seek\food\configobject" />
+      <recent name="D:\Projects\SeekFoodv2\RedisUtil\src\main\java\com\seek\food\redisutil" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\Projects\SeekFoodv2" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.seek.food.redisutil.Redis" />
     </key>
   </component>
   <component name="RunManager">
