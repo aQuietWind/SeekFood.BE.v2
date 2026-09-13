@@ -5,8 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.seek.food</groupId>
-        <artifactId>SeekFoodv2</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <artifactId>SeekFood</artifactId>
+        <version>2.0-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 

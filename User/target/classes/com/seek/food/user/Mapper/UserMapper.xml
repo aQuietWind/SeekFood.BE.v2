@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.seek.food.user.Mapper.UserMapper">
+
+    <!-- 全局统一字段映射 -->
+    <resultMap id="UserResultMap" type="com.seek.food.dto.User.UserDTO">
+        <result property="delete" column="is_delete" />
+    </resultMap>
+
+    <select id="getUserDetailMessage" resultMap="UserResultMap">
+        select
+        user_id,
+        username,
+        sex,
+        header_image_addr,
+        birthday,
+        create_time,
+        is_delete,
+        order_amount
+        from user where user_id=#{userId} and is_delete=false
+    </select>
+
+    <update id="updateUserPassword">
+        update user set password=#{newPassword} where phone_number=#{phoneNumber} and is_delete=false
+    </update>
+
+    <update id="updateUserHeader">
+        update user set header_image_addr=#{addr} where user_id=#{userId} and is_delete=false and header_image_addr
+        <if test="oldAddr!=null">=#{oldAddr}</if>
+        <if test="oldAddr==null">IS NULL</if>
+    </update>
+    
+    <update id="updateUserMessage">
+        update user
+        <set>
+            <if test="username!=null">username=#{username},</if>
+            <if test="sex!=null">sex=#{sex},</if>
+            <if test="birthday!=null">birthday=#{birthday},</if>
+        </set>
+        where user_id=#{userId} and is_delete=false
+    </update>
+
+    <update id="increaseOrderAmount">
+        update user set order_amomunt=order_amount+1 where user_id=#{userId} and is_delete=false
+    </update>
+
+    <select id="getUsersSimpleMessage" resultMap="UserResultMap">
+        select
+        user_id,
+        username,
+        header_image_addr
+        from user
+        <where>
+            <foreach collection="userIds" item="userId" separator="or">
+                user_id=#{userId}
+            </foreach>
+            and is_delete=false
+        </where>
+    </select>
+
+    <select id="getPhoneNumber" resultType="java.lang.String">
+        select phone_number from user where user_id=#{userId} and is_delete=false
+    </select>
+
+    <update id="deleteUser">
+        update user set is_delete=true,phone_number=concat(user_id,"删除",phone_number)
+        where user_id=#{userId} and is_delete=false
+    </update>
+
+    <select id="getHeaderPath" resultType="java.lang.String">
+        select header_image_addr from user where user_id=#{userId} and is_delete=false
+    </select>
+
+    <select id="getDeleteHeaderPath" resultType="java.lang.String">
+        select header_image_addr from user where user_id=#{userId} and is_delete=true
+    </select>
+
+    <update id="updateOrderAmount">
+        update user set order_amount=order_amount+#{changeNumber} where user_id=#{userId} and is_delete=false
+    </update>
+
+
+
+
+
+
+
+
+
+</mapper>

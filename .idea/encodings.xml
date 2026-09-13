@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/Admin/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Chat/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Comment/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Config/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/DTO/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Employee/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ErrorConsumer/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Fund/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Gateway/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Interaction/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Meal/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Merchant/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Order/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Promotion/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Rider/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/User/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Util/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Voucher/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
+  </component>
+</project>

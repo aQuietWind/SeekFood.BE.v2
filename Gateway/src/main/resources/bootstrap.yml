@@ -9,7 +9,8 @@ spring:
       # 服务注册发现（控制截图里的分组）
       discovery:
         server-addr: 127.0.0.1:8848
-        namespace: 123123123123
+        #命名空间的id,不是名字,是id
+        namespace: SeekFoodv2
         group: SEEK_FOOD_GROUP
       config:
         server-addr: ${spring.cloud.nacos.discovery.server-addr}   #nacos地址

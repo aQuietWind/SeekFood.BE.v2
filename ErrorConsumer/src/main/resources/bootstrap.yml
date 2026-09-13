@@ -12,8 +12,8 @@ spring:
         username: nacos   #用户名
         # 配置文件后缀，yaml/properties
         file-extension: yaml
-        # 命名空间Id，隔离环境，默认public
-        namespace: 123123123123
+        #命名空间的id,不是名字,是id
+        namespace: SeekFoodv2
         # 分组，默认DEFAULT_GROUP，区分业务模块
         group: SEEK_FOOD_GROUP
         # 开启自动刷新配置（动态更新无需重启服务）

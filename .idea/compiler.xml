@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="Order" />
+        <module name="Comment" />
+        <module name="User" />
+        <module name="Fund" />
+        <module name="Config" />
+        <module name="ErrorConsumer" />
+        <module name="Interaction" />
+        <module name="Meal" />
+        <module name="Util" />
+        <module name="Admin" />
+        <module name="Promotion" />
+        <module name="Rider" />
+        <module name="Voucher" />
+        <module name="Employee" />
+        <module name="Merchant" />
+        <module name="Gateway" />
+        <module name="Chat" />
+        <module name="DTO" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel target="21" />
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="Admin" options="-parameters" />
+      <module name="Chat" options="-parameters" />
+      <module name="Comment" options="-parameters" />
+      <module name="Config" options="-parameters" />
+      <module name="DTO" options="-parameters" />
+      <module name="Employee" options="-parameters" />
+      <module name="ErrorConsumer" options="-parameters" />
+      <module name="Fund" options="-parameters" />
+      <module name="Gateway" options="-parameters" />
+      <module name="Interaction" options="-parameters" />
+      <module name="Meal" options="-parameters" />
+      <module name="Merchant" options="-parameters" />
+      <module name="Order" options="-parameters" />
+      <module name="Promotion" options="-parameters" />
+      <module name="Rider" options="-parameters" />
+      <module name="User" options="-parameters" />
+      <module name="Util" options="-parameters" />
+      <module name="Voucher" options="-parameters" />
+    </option>
+  </component>
+</project>

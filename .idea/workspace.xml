@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="066cab83-f215-42e2-8482-62b8a6c4cc75" name="更改" comment="">
+      <change beforePath="$PROJECT_DIR$/Admin/src/main/resources/bootstrap.yml" beforeDir="false" afterPath="$PROJECT_DIR$/Admin/src/main/resources/bootstrap.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Chat/src/main/resources/bootstrap.yml" beforeDir="false" afterPath="$PROJECT_DIR$/Chat/src/main/resources/bootstrap.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Comment/src/main/resources/bootstrap.yml" beforeDir="false" afterPath="$PROJECT_DIR$/Comment/src/main/resources/bootstrap.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Employee/src/main/resources/bootstrap.yml" beforeDir="false" afterPath="$PROJECT_DIR$/Employee/src/main/resources/bootstrap.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ErrorConsumer/src/main/resources/bootstrap.yml" beforeDir="false" afterPath="$PROJECT_DIR$/ErrorConsumer/src/main/resources/bootstrap.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fund/src/main/resources/bootstrap.yml" beforeDir="false" afterPath="$PROJECT_DIR$/Fund/src/main/resources/bootstrap.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/main/resources/bootstrap.yml" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/main/resources/bootstrap.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Interaction/src/main/resources/bootstrap.yml" beforeDir="false" afterPath="$PROJECT_DIR$/Interaction/src/main/resources/bootstrap.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Meal/src/main/resources/bootstrap.yml" beforeDir="false" afterPath="$PROJECT_DIR$/Meal/src/main/resources/bootstrap.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Merchant/src/main/resources/bootstrap.yml" beforeDir="false" afterPath="$PROJECT_DIR$/Merchant/src/main/resources/bootstrap.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Order/src/main/resources/bootstrap.yml" beforeDir="false" afterPath="$PROJECT_DIR$/Order/src/main/resources/bootstrap.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Promotion/src/main/resources/bootstrap.yml" beforeDir="false" afterPath="$PROJECT_DIR$/Promotion/src/main/resources/bootstrap.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Rider/src/main/resources/bootstrap.yml" beforeDir="false" afterPath="$PROJECT_DIR$/Rider/src/main/resources/bootstrap.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/User/src/main/resources/bootstrap.yml" beforeDir="false" afterPath="$PROJECT_DIR$/User/src/main/resources/bootstrap.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Voucher/src/main/resources/bootstrap.yml" beforeDir="false" afterPath="$PROJECT_DIR$/Voucher/src/main/resources/bootstrap.yml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="customMavenHome" value="D:\Tools\apache-maven-3.9.12-bin\apache-maven-3.9.12" />
+        <option name="localRepository" value="D:\Tools\apache-maven-3.9.12-bin\apache-maven-3.9.12\mvn_repo" />
+        <option name="mavenHomeTypeForPersistence" value="CUSTOM" />
+        <option name="userSettingsFile" value="D:\Tools\apache-maven-3.9.12-bin\apache-maven-3.9.12\conf\settings.xml" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="NextEditCompletionFeaturesState">
+    <decayedCancelled>
+      <entry key="MS100" value="1.0017360208638468" />
+      <entry key="MS500" value="1.2853934890773946" />
+      <entry key="S2" value="2.215445343900978" />
+      <entry key="S5" value="3.850355019753649" />
+      <entry key="S10" value="5.659361225422479" />
+      <entry key="S30" value="8.420445846394795" />
+      <entry key="S60" value="9.558836072616746" />
+      <entry key="M2" value="10.258273861763778" />
+      <entry key="M5" value="11.320984683452105" />
+      <entry key="M10" value="12.793595622318447" />
+      <entry key="M15" value="13.731921339975491" />
+      <entry key="M30" value="15.072938061279974" />
+      <entry key="H1" value="15.948858561131276" />
+      <entry key="H2" value="16.450422931972362" />
+      <entry key="H4" value="16.718924731241206" />
+      <entry key="D1" value="16.95225565297365" />
+      <entry key="W1" value="16.99315703787837" />
+    </decayedCancelled>
+    <decayedSelected>
+      <entry key="MS100" value="0.0" />
+      <entry key="MS500" value="0.0" />
+      <entry key="S2" value="0.0" />
+      <entry key="S5" value="0.0" />
+      <entry key="S10" value="0.0" />
+      <entry key="S30" value="0.0" />
+      <entry key="S60" value="0.0" />
+      <entry key="M2" value="0.0" />
+      <entry key="M5" value="0.0" />
+      <entry key="M10" value="0.0" />
+      <entry key="M15" value="0.0" />
+      <entry key="M30" value="0.0" />
+      <entry key="H1" value="0.0" />
+      <entry key="H2" value="0.0" />
+      <entry key="H4" value="0.0" />
+      <entry key="D1" value="0.0" />
+      <entry key="W1" value="0.0" />
+    </decayedSelected>
+    <decayedShown>
+      <entry key="MS100" value="0.9346982940618958" />
+      <entry key="MS500" value="1.2692625072203259" />
+      <entry key="S2" value="2.2094330812883527" />
+      <entry key="S5" value="3.8464508240210193" />
+      <entry key="S10" value="5.656517472714233" />
+      <entry key="S30" value="8.41900949559221" />
+      <entry key="S60" value="9.558012642574294" />
+      <entry key="M2" value="10.257802731038414" />
+      <entry key="M5" value="11.320464181693627" />
+      <entry key="M10" value="12.792976558852509" />
+      <entry key="M15" value="13.73134565610954" />
+      <entry key="M30" value="15.072530739648412" />
+      <entry key="H1" value="15.948615264831815" />
+      <entry key="H2" value="16.450289854871958" />
+      <entry key="H4" value="16.718855123124932" />
+      <entry key="D1" value="16.9522436061316" />
+      <entry key="W1" value="16.993155305733097" />
+    </decayedShown>
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 4,
+  "fromUser": false
+}]]></component>
+  <component name="ProjectId" id="3JGGZh0yA29zT2qWy3OW4HvfTnw" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/Projects/SeekFoodv2",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "configurable.group.editor"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Projects\SeekFoodv2" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="SeekFoodv2" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="SeekFoodv2" />
+      <option name="filePath" />
+      <method v="2" />
+    </configuration>
+    <configuration name="UserApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UnknownPolicyInFreeMode" />
+      <module name="User" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.seek.food.user.UserApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.seek.food.user.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Spring Boot.UserApplication" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-30f59d01ecdd-37e91769500f-intellij.indexing.shared.core-IU-261.24374.151" />
+        <option value="bundled-js-predefined-d6986cc7102b-31caf2ab9e3c-JavaScript-IU-261.24374.151" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="默认任务">
+      <changelist id="066cab83-f215-42e2-8482-62b8a6c4cc75" name="更改" comment="" />
+      <created>1789280048657</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1789280048657</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
